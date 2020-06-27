@@ -10,16 +10,16 @@ class UserInput extends Component {
         dinner: false,
         snack: false,
         };
-        this.handleBreakfastClick = this.handleBreakfastClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         // this.handleUserClick = this.handleUserClick.bind(this);
     }
 
-    handleBreakfastClick() {
+    handleClick() {
         this.setState({
         breakfast: this.state.breakfast ? false : true,
-        lunch: false,
-        dinner: false,
-        snack: false,
+        lunch: this.state.lunch ? false : true,
+        dinner: this.state.dinner ? false : true,
+        snack: this.state.snack ? false : true,
         });
     }
 
@@ -27,13 +27,16 @@ class UserInput extends Component {
         return (
             <div className="userInput">
 
-                <button onClick={this.handleBreakfastClick}>Breakfast</button>
+                <button onClick={this.handleClick}>Breakfast</button>
                 {/* <Breakfast handleBreakfastClick={this.handleBreakfastClick} /> */}
-                <button>Lunch</button>
-                <button>Dinner</button>
-                <button>Snack</button>
+                <button onClick={this.handleClick}>Lunch</button>
+                <button onClick={this.handleClick}>Dinner</button>
+                <button onClick={this.handleClick}>Snack</button>
                 
                 {this.state.breakfast ? <Breakfast /> : null}
+                {/* {this.state.lunch ? <Lunch /> : null}
+                {this.state.dinner ? <Dinner /> : null}
+                {this.state.snack ? <Snack /> : null} */}
 
                 {/* {this.state.UserPage ? <UserPage /> : null} */}
                 {/* <Breakfast /> */}
