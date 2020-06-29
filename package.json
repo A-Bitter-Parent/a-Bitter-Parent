@@ -1,5 +1,5 @@
 {
-    "homepage": "https://a-bitter-parent.github.io/aBitterParent",
+    "homepage": "https://a-bitter-parent.github.io/a-Bitter-Parent",
     "name": "a-bitter-parent",
     "version": "0.1.0",
     "private": true,
@@ -9,8 +9,8 @@
         "@testing-library/user-event": "^7.2.1",
         "axios": "^0.19.2",
         "gh-pages": "^3.1.0",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
+        "react": "0.0.0-7f28234f8",
+        "react-dom": "0.0.0-7f28234f8",
         "react-scripts": "3.4.1"
     },
     "scripts": {

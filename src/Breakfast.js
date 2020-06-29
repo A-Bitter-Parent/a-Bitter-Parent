@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+// import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 class Breakfast extends Component {
+    
+    // const {userInput, setUserInput} = useState("");
+    // const {sugarValue, setSugarValue} = useState("");
+    // const {usersFood, setUsersFood} = useState([]);
+    // const {recommendedFood, setRecommendedFood} = useState([]);
+
     constructor() {
         super();
         this.state = {
@@ -18,14 +25,12 @@ class Breakfast extends Component {
         let userInput = this.state.userInput;
         let value = event.target.value;
 
-        userInput = value;
 
         this.setState({
             userInput: userInput,
         })
     }
 
-    
     componentDidUpdate(prevProps, prevState) {
         if (prevState.userInput !== this.state.userInput) {
             axios({
@@ -49,7 +54,6 @@ class Breakfast extends Component {
                 for (let i=0; i<nutObj.length; i++) {
                     if (nutObj[i].attr_id === 269) {
                         sugarAmount =  nutObj[i].value
-    
                     }
                 }
                 
@@ -77,7 +81,7 @@ class Breakfast extends Component {
                         "detailed": true,
                         "full_nutrients": {
                             "269": {
-                              "lte": this.state.sugarValue - 10,
+                            "lte": this.state.sugarValue - 10,
                             }  }
                     }
                 }).then((response) => {
@@ -99,7 +103,7 @@ class Breakfast extends Component {
                         "detailed": true,
                         "full_nutrients": {
                             "269": {
-                              "lte": this.state.sugarValue,
+                            "lte": this.state.sugarValue,
                             }  }
                     }
                 }).then((response) => {
@@ -111,9 +115,7 @@ class Breakfast extends Component {
             } else {
                 alert('Go ahead! Eat it!')
             }
-
         }
-
     }
 
     render() {
