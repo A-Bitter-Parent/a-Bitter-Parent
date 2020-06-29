@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/aBitterParent/static/css/main.5f361e03.chunk.css",
+    "main.js": "/aBitterParent/static/js/main.def3ed6c.chunk.js",
+    "main.js.map": "/aBitterParent/static/js/main.def3ed6c.chunk.js.map",
+    "runtime-main.js": "/aBitterParent/static/js/runtime-main.d7286201.js",
+    "runtime-main.js.map": "/aBitterParent/static/js/runtime-main.d7286201.js.map",
+    "static/js/2.fa7715ab.chunk.js": "/aBitterParent/static/js/2.fa7715ab.chunk.js",
+    "static/js/2.fa7715ab.chunk.js.map": "/aBitterParent/static/js/2.fa7715ab.chunk.js.map",
+    "index.html": "/aBitterParent/index.html",
+    "precache-manifest.b96fa058ed98eea0ce4d14870496fa42.js": "/aBitterParent/precache-manifest.b96fa058ed98eea0ce4d14870496fa42.js",
+    "service-worker.js": "/aBitterParent/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/aBitterParent/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.fa7715ab.chunk.js.LICENSE.txt": "/aBitterParent/static/js/2.fa7715ab.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d7286201.js",
+    "static/js/2.fa7715ab.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.def3ed6c.chunk.js"
+  ]
+}
