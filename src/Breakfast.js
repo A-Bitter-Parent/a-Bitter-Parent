@@ -30,8 +30,9 @@ class Breakfast extends Component {
         event.preventDefault();
 
         let userInput = this.state.userInput;
-        let value = event.target.value;
-
+				let value = event.target.value;
+				
+				userInput = value;
 
         this.setState({
             userInput: userInput,
