@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Breakfast from './Breakfast';
+import Lunch from './Lunch';
+import Dinner from './Dinner';
+import Snack from './Snack';
 
 class UserInput extends Component {
     constructor() {
@@ -10,16 +13,40 @@ class UserInput extends Component {
         dinner: false,
         snack: false,
         };
-        this.handleClick = this.handleClick.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
         // this.handleUserClick = this.handleUserClick.bind(this);
     }
 
-    handleClick() {
+    handleBreakfastClick = () => {
         this.setState({
-        breakfast: this.state.breakfast ? false : true,
-        lunch: this.state.lunch ? false : true,
-        dinner: this.state.dinner ? false : true,
-        snack: this.state.snack ? false : true,
+        breakfast: true,
+        lunch: false,
+        dinner: false,
+        snack: false,
+        });
+    }
+    handleLunchClick = () => {
+        this.setState({
+        breakfast: false,
+        lunch: true,
+        dinner: false,
+        snack: false,
+        });
+    }
+    handleDinnerClick = () => {
+        this.setState({
+        breakfast: false,
+        lunch: false,
+        dinner: true,
+        snack: false,
+        });
+    }
+    handleSnackClick = () => {
+        this.setState({
+        breakfast: false,
+        lunch: false,
+        dinner: false,
+        snack: true,
         });
     }
 
@@ -27,20 +54,18 @@ class UserInput extends Component {
         return (
             <div className="userInput">
 
-                <button onClick={this.handleClick}>Breakfast</button>
-                {/* <Breakfast handleBreakfastClick={this.handleBreakfastClick} /> */}
-                <button onClick={this.handleClick}>Lunch</button>
-                <button onClick={this.handleClick}>Dinner</button>
-                <button onClick={this.handleClick}>Snack</button>
+                <button onClick={this.handleBreakfastClick}>Breakfast</button>
+                <button onClick={this.handleLunchClick}>Lunch</button>
+                <button onClick={this.handleDinnerClick}>Dinner</button>
+                <button onClick={this.handleSnackClick}>Snack</button>
                 
                 {this.state.breakfast ? <Breakfast /> : null}
-                {/* {this.state.lunch ? <Lunch /> : null}
+                {this.state.lunch ? <Lunch /> : null}
                 {this.state.dinner ? <Dinner /> : null}
-                {this.state.snack ? <Snack /> : null} */}
-
-                {/* {this.state.UserPage ? <UserPage /> : null} */}
-                {/* <Breakfast /> */}
+                {this.state.snack ? <Snack /> : null}
             </div>
+
+                //fats(204), carbs(205), proteins(203), sugars(269), image(photo.thumb), calories(208)
         )
     }
 }
