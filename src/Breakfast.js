@@ -5,24 +5,13 @@ import UserResults from './UserResults'
 
 class Breakfast extends Component {
     
-    // const {userInput, setUserInput} = useState("");
-    // const {sugarValue, setSugarValue} = useState("");
-    // const {usersFood, setUsersFood} = useState([]);
-    // const {recommendedFood, setRecommendedFood} = useState([]);
-
     constructor() {
         super();
         this.state = {
             userInput: '',
             sugarValue: '',
             usersFood: [],
-            recommendedFood: {
-                fat: '', 
-                calories: '',
-                sugar: '',
-                protein: '',
-                carbohydrates: '',
-            },
+            recommendedFood: [],
         }
     }
 
@@ -30,15 +19,15 @@ class Breakfast extends Component {
         event.preventDefault();
 
         let userInput = this.state.userInput;
-				let value = event.target.value;
-				
-				userInput = value;
+        let value = event.target.value;
+        
+        userInput = value;
 
         this.setState({
             userInput: userInput,
         })
-    }
-    
+		}
+
     componentDidUpdate(prevProps, prevState) {
         if (prevState.userInput !== this.state.userInput) {
             axios({
@@ -59,32 +48,42 @@ class Breakfast extends Component {
                 console.log(response)
                 console.log('initial request')
 
-								const nutObj = response.data.common[0].full_nutrients;
-								let sugarAmount;
-								let fatAmount;
-								let calorieAmount;
-								let proteinAmount;
-								let carbohydratesAmount;
-								for (let i=0; i<nutObj.length; i++) {
-										if (nutObj[i].attr_id === 269) {
-												sugarAmount =  nutObj[i].value
-										} else if ( nutObj[i].attr_id === 204) {
-												fatAmount =  nutObj[i].value
-										} else if ( nutObj[i].attr_id === 208) {
-												calorieAmount =  nutObj[i].value
-										} else if ( nutObj[i].attr_id === 203) {
-												proteinAmount =  nutObj[i].value
-										} else if ( nutObj[i].attr_id === 205) {
-												carbohydratesAmount =  nutObj[i].value
-										}
-									}
-								
+                const nutObj = response.data.common[0].full_nutrients;
+                let sugarAmount;
+                let fatAmount;
+                let calorieAmount;
+                let proteinAmount;
+                let carbohydratesAmount;
+                for (let i=0; i<nutObj.length; i++) {
+                    if (nutObj[i].attr_id === 269) {
+                            sugarAmount =  nutObj[i].value
+                    } else if ( nutObj[i].attr_id === 204) {
+                            fatAmount =  nutObj[i].value
+                    } else if ( nutObj[i].attr_id === 208) {
+                            calorieAmount =  nutObj[i].value
+                    } else if ( nutObj[i].attr_id === 203) {
+                            proteinAmount =  nutObj[i].value
+                    } else if ( nutObj[i].attr_id === 205) {
+                            carbohydratesAmount =  nutObj[i].value
+                    }
+                } 
+
+                if (fatAmount === undefined) {
+                    fatAmount = 0;
+                } else if (calorieAmount === undefined) {
+                    calorieAmount = 0;
+                } else if (proteinAmount === undefined) {
+                    proteinAmount = 0;
+                } else if (carbohydratesAmount === undefined) {
+                    carbohydratesAmount = 0;
+                }
+                
 								const newObj = [fatAmount, calorieAmount, sugarAmount, proteinAmount, carbohydratesAmount];
-										this.setState({
-											usersFood: newObj
-										})
-										console.log(this.state.usersFood)
-            });
+                    this.setState({
+												usersFood: newObj,
+                    })
+                    console.log(this.state.usersFood)
+            })
         }
 
         if  (prevState.sugarValue !== this.state.sugarValue) {
@@ -108,10 +107,48 @@ class Breakfast extends Component {
                             }  }
                     }
                 }).then((response) => {
-                    console.log(response.data.common[0]);
-                    console.log('if first call is more than 10')
-                    
-                })
+                    // console.log(response.data.common[0]);
+										console.log('if first call is more than 10')
+										
+									const nutObj = response.data.common[0].full_nutrients;
+									console.log(nutObj)
+									
+									let sugarAmount;
+									let fatAmount;
+									let calorieAmount;
+									let proteinAmount;
+									let carbohydratesAmount;
+									for (let i = 0; i < nutObj.length; i++) {
+										if (nutObj[i].attr_id === 269) {
+											sugarAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 204) {
+											fatAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 208) {
+											calorieAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 203) {
+											proteinAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 205) {
+											carbohydratesAmount = nutObj[i].value
+										}
+									}
+
+									if (fatAmount === undefined) {
+										fatAmount = 0;
+									} else if (calorieAmount === undefined) {
+										calorieAmount = 0;
+									} else if (proteinAmount === undefined) {
+										proteinAmount = 0;
+									} else if (carbohydratesAmount === undefined) {
+										carbohydratesAmount = 0;
+									}
+
+									const newObj = [fatAmount, calorieAmount, sugarAmount, proteinAmount, carbohydratesAmount];
+									this.setState({
+										recommendedFood: newObj,
+									})
+									console.log(this.state.usersFood)
+								}
+							)
             } else if (this.state.sugarValue < 10) {
                 axios({
                     url: 'https://trackapi.nutritionix.com/v2/search/instant',
@@ -137,13 +174,51 @@ class Breakfast extends Component {
                     
                     if (response.data.common[0] === undefined) {
                         alert('Go ahead! Eat it!')
-                    }
-                })
+										}
+										
+									const nutObj = response.data.common[0].full_nutrients;
+									let sugarAmount;
+									let fatAmount;
+									let calorieAmount;
+									let proteinAmount;
+									let carbohydratesAmount;
+									for (let i = 0; i < nutObj.length; i++) {
+										if (nutObj[i].attr_id === 269) {
+											sugarAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 204) {
+											fatAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 208) {
+											calorieAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 203) {
+											proteinAmount = nutObj[i].value
+										} else if (nutObj[i].attr_id === 205) {
+											carbohydratesAmount = nutObj[i].value
+										}
+									}
+
+									if (fatAmount === undefined) {
+										fatAmount = 0;
+									} else if (calorieAmount === undefined) {
+										calorieAmount = 0;
+									} else if (proteinAmount === undefined) {
+										proteinAmount = 0;
+									} else if (carbohydratesAmount === undefined) {
+										carbohydratesAmount = 0;
+									}
+
+									const newObj = [fatAmount, calorieAmount, sugarAmount, proteinAmount, carbohydratesAmount];
+									this.setState({
+										recommendedFood: newObj,
+									})
+									console.log(this.state.usersFood)
+								})
+								
             } else {
                 alert('Go ahead! Eat it!')
-            }
-        }
-    }
+						}
+					}
+				}
+    
 
     render() {
         return (
