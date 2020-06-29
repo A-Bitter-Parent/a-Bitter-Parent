@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0348ad303e382de84871ef49cf5d843a",
+    "revision": "6aba6f2158c0ac1c127fd7a889d20937",
     "url": "/a-Bitter-Parent/index.html"
   },
   {
-    "revision": "36ee310ac4b2b44334b3",
+    "revision": "9e15e830f946182d6824",
     "url": "/a-Bitter-Parent/static/css/main.5f361e03.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/a-Bitter-Parent/static/js/2.4970564f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "36ee310ac4b2b44334b3",
-    "url": "/a-Bitter-Parent/static/js/main.610bdf64.chunk.js"
+    "revision": "9e15e830f946182d6824",
+    "url": "/a-Bitter-Parent/static/js/main.9b14f951.chunk.js"
   },
   {
     "revision": "7ac1d6d98f58825d9cde",
