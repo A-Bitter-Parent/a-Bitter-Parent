@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import UserResults from './UserResults'
 
 class Breakfast extends Component {
     constructor() {
@@ -8,7 +9,13 @@ class Breakfast extends Component {
             userInput: '',
             sugarValue: '',
             usersFood: [],
-            recommendedFood: [],
+            recommendedFood: {
+                fat: '', 
+                calories: '',
+                sugar: '',
+                protein: '',
+                carbohydrates: '',
+            },
         }
     }
 
@@ -24,7 +31,6 @@ class Breakfast extends Component {
             userInput: userInput,
         })
     }
-
     
     componentDidUpdate(prevProps, prevState) {
         if (prevState.userInput !== this.state.userInput) {
@@ -43,20 +49,34 @@ class Breakfast extends Component {
                     "detailed": true,
                 }
             }).then((response) => {
-    
-                const nutObj = response.data.common[0].full_nutrients;
-                let sugarAmount;
-                for (let i=0; i<nutObj.length; i++) {
-                    if (nutObj[i].attr_id === 269) {
-                        sugarAmount =  nutObj[i].value
-    
-                    }
-                }
-                
-                this.setState({
-                    sugarValue: sugarAmount
-                })
-                console.log(this.state.sugarValue);
+                console.log(response)
+                console.log('initial request')
+
+								const nutObj = response.data.common[0].full_nutrients;
+								let sugarAmount;
+								let fatAmount;
+								let calorieAmount;
+								let proteinAmount;
+								let carbohydratesAmount;
+								for (let i=0; i<nutObj.length; i++) {
+										if (nutObj[i].attr_id === 269) {
+												sugarAmount =  nutObj[i].value
+										} else if ( nutObj[i].attr_id === 204) {
+												fatAmount =  nutObj[i].value
+										} else if ( nutObj[i].attr_id === 208) {
+												calorieAmount =  nutObj[i].value
+										} else if ( nutObj[i].attr_id === 203) {
+												proteinAmount =  nutObj[i].value
+										} else if ( nutObj[i].attr_id === 205) {
+												carbohydratesAmount =  nutObj[i].value
+										}
+									}
+								
+								const newObj = [fatAmount, calorieAmount, sugarAmount, proteinAmount, carbohydratesAmount];
+										this.setState({
+											usersFood: newObj
+										})
+										console.log(this.state.usersFood)
             });
         }
 
@@ -77,11 +97,13 @@ class Breakfast extends Component {
                         "detailed": true,
                         "full_nutrients": {
                             "269": {
-                              "lte": this.state.sugarValue - 10,
+                            "lte": this.state.sugarValue - 10,
                             }  }
                     }
                 }).then((response) => {
                     console.log(response.data.common[0]);
+                    console.log('if first call is more than 10')
+                    
                 })
             } else if (this.state.sugarValue < 10) {
                 axios({
@@ -99,11 +121,13 @@ class Breakfast extends Component {
                         "detailed": true,
                         "full_nutrients": {
                             "269": {
-                              "lte": this.state.sugarValue,
+                            "lte": this.state.sugarValue,
                             }  }
                     }
                 }).then((response) => {
                     console.log(response.data.common[0]);
+                    console.log('if first call is less than 10 but greater than 0')
+                    
                     if (response.data.common[0] === undefined) {
                         alert('Go ahead! Eat it!')
                     }
@@ -111,9 +135,7 @@ class Breakfast extends Component {
             } else {
                 alert('Go ahead! Eat it!')
             }
-
         }
-
     }
 
     render() {
@@ -134,7 +156,9 @@ class Breakfast extends Component {
                         <option value="cake">Cake</option>
                     </select>
                 </form>
+                <UserResults results={this.state}/>
             </div>
+
         )
     }
 }

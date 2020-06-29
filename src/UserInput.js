@@ -64,6 +64,8 @@ class UserInput extends Component {
                 {this.state.dinner ? <Dinner /> : null}
                 {this.state.snack ? <Snack /> : null}
             </div>
+
+                //fats(204), carbs(205), proteins(203), sugars(269), image(photo.thumb), calories(208)
         )
     }
 }
