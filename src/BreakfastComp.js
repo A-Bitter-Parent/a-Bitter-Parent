@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import UserResults from './UserResults'
 
 class BreakfastComp extends Component {
-constructor(props) {
-  super(props);
-  this.props.results = {
-    checkUserChoice: ''
-  }
+// constructor(props) {
+//   super(props);
+//   this.props.results = {
+//     checkUserChoice: false
+//   }
 
-}
+// }
 
   render() {
     return (

@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 // import Breakfast from './Breakfast';
 // import Lunch from './Lunch';
 // import Dinner from './Dinner';
 // import Snack from './Snack';
+import UserInput from "./UserInput";
 
 // import BreakfastComp from "./BreakfastComp";
 
@@ -11,13 +12,17 @@ class ApiCalls extends Component {
   constructor() {
     super();
     this.state = {
-      userInput: "",
+      userInputz: "",
       recoFoodTitle: "",
       sugarValue: "",
       usersFood: [],
       recommendedFood: [],
       checkReco: false,
       checkUserChoice: false,
+      breakfast: false,
+      lunch: false,
+      dinner: false,
+      snack: false,
     };
   }
 
@@ -34,6 +39,45 @@ class ApiCalls extends Component {
       checkUserChoice: false,
     });
   };
+
+  handleBreakfastClick = () => {
+    this.setState({
+      breakfast: true,
+      lunch: false,
+      dinner: false,
+      snack: false,
+    });
+    console.log(this.state);
+  };
+  handleLunchClick = () => {
+    this.setState({
+      breakfast: false,
+      lunch: true,
+      dinner: false,
+      snack: false,
+    });
+  };
+  handleDinnerClick = () => {
+    this.setState({
+      breakfast: false,
+      lunch: false,
+      dinner: true,
+      snack: false,
+    });
+  };
+  handleSnackClick = () => {
+    this.setState({
+      breakfast: false,
+      lunch: false,
+      dinner: false,
+      snack: true,
+    });
+  };
+
+  componentDidMount() {
+    
+  }
+
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.userInput !== this.state.userInput) {
@@ -260,11 +304,21 @@ class ApiCalls extends Component {
     } else {
       alert("Go ahead! Eat it!");
     }
+ 
+    
   };
-
   render() {
+
     return (
-      <UserInput mainState={this.state} handleChange={this.handleChange} subClick={this.subClick}/>
+      <UserInput
+        results={this.state}
+        handleChange={this.handleChange}
+        subClick={this.subClick}
+        handleBreakfastClick={this.handleBreakfastClick}
+        handleLunchClick={this.handleLunchClick}
+        handleDinnerClick={this.handleDinnerClick}
+        handleSnackClick={this.handleSnackClick}
+      />
     );
   }
 }
