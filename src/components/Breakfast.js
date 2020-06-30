@@ -1,21 +1,16 @@
 import React, { Component } from "react";
-import UserResults from './UserResults'
+import UserResults from "./UserResults";
 
-class BreakfastComp extends Component {
-// constructor(props) {
-//   super(props);
-//   this.props.results = {
-//     checkUserChoice: false
-//   }
-
-// }
-
+class Breakfast extends Component {
   render() {
     return (
       <div className="breakfast">
         <form className="foodSelector">
           <label htmlFor="foodMenu">Select what you would Like</label>
           <select id="foodMenu" onChange={this.props.handleChange}>
+            <option disabled defaultValue>
+              Choose your food
+            </option>
             <option value="waffles">Waffles</option>
             <option value="pancakes">Pancakes</option>
             <option value="cereal">Cereal</option>
@@ -28,11 +23,13 @@ class BreakfastComp extends Component {
             <option value="cake">Cake</option>
           </select>
         </form>
-        <UserResults results={this.props.results} subClick={this.props.subClick} />
+        <UserResults
+          results={this.props.results}
+          subClick={this.props.subClick}
+        />
       </div>
-
     );
   }
 }
 
-export default BreakfastComp
+export default Breakfast;

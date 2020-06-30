@@ -4,7 +4,7 @@ import axios from "axios";
 // import Lunch from './Lunch';
 // import Dinner from './Dinner';
 // import Snack from './Snack';
-import UserInput from "./UserInput";
+import UserInput from "./components/UserInput";
 
 // import BreakfastComp from "./BreakfastComp";
 
@@ -12,7 +12,7 @@ class ApiCalls extends Component {
   constructor() {
     super();
     this.state = {
-      userInputz: "",
+      userInput: "",
       recoFoodTitle: "",
       sugarValue: "",
       usersFood: [],
@@ -38,6 +38,8 @@ class ApiCalls extends Component {
       userInput: userInput,
       checkUserChoice: false,
     });
+    console.log(this.state.checkUserChoice);
+    
   };
 
   handleBreakfastClick = () => {
@@ -47,7 +49,9 @@ class ApiCalls extends Component {
       dinner: false,
       snack: false,
     });
-    console.log(this.state);
+    console.log(`breakfast ${this.state.breakfast}`);
+    console.log(`breakfast checkUserChoice ${this.state.checkUserChoice}`);
+    
   };
   handleLunchClick = () => {
     this.setState({
@@ -56,6 +60,8 @@ class ApiCalls extends Component {
       dinner: false,
       snack: false,
     });
+    console.log(`lunch ${this.state.lunch}`);
+    
   };
   handleDinnerClick = () => {
     this.setState({
@@ -64,6 +70,7 @@ class ApiCalls extends Component {
       dinner: true,
       snack: false,
     });
+    console.log(`dinner ${this.state.dinner}`);
   };
   handleSnackClick = () => {
     this.setState({
@@ -72,12 +79,8 @@ class ApiCalls extends Component {
       dinner: false,
       snack: true,
     });
+    console.log(`snack ${this.state.snack}`);
   };
-
-  componentDidMount() {
-    
-  }
-
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.userInput !== this.state.userInput) {
