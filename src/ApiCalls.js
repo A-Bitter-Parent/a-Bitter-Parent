@@ -171,7 +171,15 @@ class ApiCalls extends Component {
     });
     console.log(this.state.checkReco);
 
-    const randItem = Math.floor(Math.random() * 20);
+    let randItem = 1;
+
+    let noOfRes;
+    // console.log(noOfRes)
+    if (noOfRes = 20) {
+      randItem = (Math.floor(Math.random() * 20))
+    } else {
+      randItem = (Math.floor(Math.random() * noOfRes))
+    }
 
     if (this.state.sugarValue >= 10) {
       axios({
@@ -195,9 +203,9 @@ class ApiCalls extends Component {
         },
       }).then((response) => {
         console.log(this.state.sugarValue);
+        console.log(response.data.common.length)
 
-        // console.log(response.data.common[0]);
-        console.log("if first call is more than 10");
+        console.log("if first call is more than 10");      
 
         const nutObj = response.data.common[randItem].full_nutrients;
         // console.log(nutObj)
@@ -243,6 +251,9 @@ class ApiCalls extends Component {
           recoFoodTitle: response.data.common[randItem].food_name,
         });
         console.log(this.state.recommendedFood);
+
+        noOfRes = this.state.recommendedFood.length;
+        console.log(noOfRes)
       });
 
       axios({
