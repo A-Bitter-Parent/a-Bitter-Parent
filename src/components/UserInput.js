@@ -12,42 +12,48 @@ class UserInput extends Component {
   render() {
     return (
       <div className="userInput">
-        <button onClick={this.props.handleBreakfastClick} onChange={this.props.handleChange}>Breakfast</button>
+        {/* <button onClick={this.props.handleBreakfastClick} onChange={this.props.handleChange}>Breakfast</button>
         <button onClick={this.props.handleLunchClick} onChange={this.props.handleChange}>Lunch</button>
         <button onClick={this.props.handleDinnerClick} onChange={this.props.handleChange}>Dinner</button>
-        <button onClick={this.props.handleSnackClick} onChange={this.props.handleChange}>Snack</button>
+        <button onClick={this.props.handleSnackClick} onChange={this.props.handleChange}>Snack</button> */}
 
-        {this.props.results.breakfast ? (
+        <button onClick={this.props.handleBreakfastClick}>Breakfast</button>
+        <button onClick={this.props.handleLunchClick}>Lunch</button>
+        <button onClick={this.props.handleDinnerClick}>Dinner</button>
+        <button onClick={this.props.handleSnackClick}>Snack</button>
+
+
+        {this.props.results.breakfast ?
           <Breakfast
             results={this.props.results}
             handleChange={this.props.handleChange}
             subClick={this.props.subClick}
           />
-        ) : null}
+          : null}
 
-        {this.props.results.lunch ? (
+        {this.props.results.lunch ?
           <Lunch
             results={this.props.results}
             handleChange={this.props.handleChange}
             subClick={this.props.subClick}
           />
-        ) : null}
+          : null}
 
-        {this.props.results.dinner ? (
+        {this.props.results.dinner ?
           <Dinner
             results={this.props.results}
             handleChange={this.props.handleChange}
             subClick={this.props.subClick}
           />
-        ) : null}
+          : null}
 
-        {this.props.results.snack ? (
+        {this.props.results.snack ?
           <Snack
             results={this.props.results}
             handleChange={this.props.handleChange}
             subClick={this.props.subClick}
           />
-        ) : null}
+          : null}
       </div>
 
       //fats(204), carbs(205), proteins(203), sugars(269), image(photo.thumb), calories(208)

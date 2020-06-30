@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import Breakfast from './Breakfast';
-// import Lunch from './Lunch';
-// import Dinner from './Dinner';
-// import Snack from './Snack';
 import UserInput from "./components/UserInput";
-
-// import BreakfastComp from "./BreakfastComp";
 
 class ApiCalls extends Component {
   constructor() {
@@ -44,35 +38,6 @@ class ApiCalls extends Component {
     });
     console.log(this.state.checkUserChoice);
 
-    axios({
-      url: `https://api.unsplash.com/photos/random`,
-      method: "GET",
-      responseType: "json",
-      params: {
-        client_id: "XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA",
-        query: `${this.state.userInput}`,
-        orientation: "landscape",
-      },
-      proxyHeaders: {
-        "Some-Header": "goes here",
-      },
-      xmlToJSON: false,
-      useCache: false,
-    }).then(function (response) {
-      console.log(response);
-
-      let unsplashUrl = response.data.urls.small;
-      let altTag = response.data.alt_description;
-
-      console.log(unsplashUrl);
-      console.log(altTag);
-      
-      this.setState({
-        userImage: unsplashUrl,
-        userImageAlt: altTag
-      })
-    });
-
   };
 
   handleBreakfastClick = () => {
@@ -82,9 +47,7 @@ class ApiCalls extends Component {
       dinner: false,
       snack: false,
     });
-    console.log(`breakfast ${this.state.breakfast}`);
-    console.log(`breakfast checkUserChoice ${this.state.checkUserChoice}`);
-  };
+  }
   handleLunchClick = () => {
     this.setState({
       breakfast: false,
@@ -92,8 +55,7 @@ class ApiCalls extends Component {
       dinner: false,
       snack: false,
     });
-    console.log(`lunch ${this.state.lunch}`);
-  };
+  }
   handleDinnerClick = () => {
     this.setState({
       breakfast: false,
@@ -101,8 +63,7 @@ class ApiCalls extends Component {
       dinner: true,
       snack: false,
     });
-    console.log(`dinner ${this.state.dinner}`);
-  };
+  }
   handleSnackClick = () => {
     this.setState({
       breakfast: false,
@@ -110,14 +71,34 @@ class ApiCalls extends Component {
       dinner: false,
       snack: true,
     });
-    console.log(`snack ${this.state.snack}`);
-  };
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.userInput !== this.state.userInput) {
       this.setState({
         checkReco: false,
         checkUserChoice: true,
+      });
+
+      axios({
+        url: 'https://api.unsplash.com/photos/random',
+        method: "GET",
+        responseType: "JSON",
+        params: {
+          client_id: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+          query: this.state.userInput,
+          orientation: "landscape",
+        },
+      }).then((response) => {
+        console.log(response);
+
+        let unsplashUrl = response.data.urls.small;
+        let altTag = response.data.alt_description;
+
+        this.setState({
+          userImage: unsplashUrl,
+          userImageAlt: altTag
+        })
       });
 
       axios({
@@ -263,6 +244,28 @@ class ApiCalls extends Component {
         });
         console.log(this.state.recommendedFood);
       });
+
+      axios({
+        url: 'https://api.unsplash.com/photos/random',
+        method: "GET",
+        responseType: "JSON",
+        params: {
+          client_id: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+          query: `${this.state.recoFoodTitle} food`,
+          orientation: "landscape",
+        },
+      }).then((response) => {
+        console.log(this.state.recoFoodTitle);
+
+        let unsplashUrl = response.data.urls.small;
+        let altTag = response.data.alt_description;
+
+        this.setState({
+          recoImage: unsplashUrl,
+          recoImageAlt: altTag
+        })
+      });
+
     } else if (this.state.sugarValue < 10) {
       axios({
         url: "https://trackapi.nutritionix.com/v2/search/instant",
@@ -335,6 +338,28 @@ class ApiCalls extends Component {
         });
         console.log(this.state.recommendedFood);
       });
+
+      axios({
+        url: 'https://api.unsplash.com/photos/random',
+        method: "GET",
+        responseType: "JSON",
+        params: {
+          client_id: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+          query: `${this.state.recoFoodTitle} food`,
+          orientation: "landscape",
+        },
+      }).then((response) => {
+        console.log(this.state.recoFoodTitle);
+
+        let unsplashUrl = response.data.urls.small;
+        let altTag = response.data.alt_description;
+
+        this.setState({
+          recoImage: unsplashUrl,
+          recoImageAlt: altTag
+        })
+      });
+
     } else {
       alert("Go ahead! Eat it!");
     }

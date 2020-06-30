@@ -13,6 +13,7 @@ class UserSuggestion extends Component {
 					<li>Protein: {this.props.results.recommendedFood[3]} g</li>
 					<li>Carbohydrates: {this.props.results.recommendedFood[4]} g</li>
 				</ul>
+				<img src={this.props.results.recoImage} alt={this.props.results.recoImageAlt} />
 			</div>
 		)
 	}
