@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import UserInput from './UserInput'
-import axios from 'axios';
+import ApiCalls from './ApiCalls.js'
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      userInput: '',
-    }
-  }
+
 
   // componentDidMount() {
   //   axios({
@@ -46,7 +40,7 @@ class App extends Component {
       <div className="app">
         <h1>A Bitter Parent</h1>
 
-        <UserInput userInput={this.state.userInput}/>
+        <ApiCalls />
 
       </div>
     )
