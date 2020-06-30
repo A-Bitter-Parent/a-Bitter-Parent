@@ -46,6 +46,8 @@ class ApiCalls extends Component {
       lunch: false,
       dinner: false,
       snack: false,
+      checkUserChoice: false,
+      checkReco: false,
     });
   }
   handleLunchClick = () => {
@@ -54,6 +56,8 @@ class ApiCalls extends Component {
       lunch: true,
       dinner: false,
       snack: false,
+      checkUserChoice: false,
+      checkReco: false,
     });
   }
   handleDinnerClick = () => {
@@ -62,6 +66,8 @@ class ApiCalls extends Component {
       lunch: false,
       dinner: true,
       snack: false,
+      checkUserChoice: false,
+      checkReco: false,
     });
   }
   handleSnackClick = () => {
@@ -70,6 +76,8 @@ class ApiCalls extends Component {
       lunch: false,
       dinner: false,
       snack: true,
+      checkUserChoice: false,
+      checkReco: false,
     });
   }
 
