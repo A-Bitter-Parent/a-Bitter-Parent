@@ -1,8 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
-import UserResults from "./UserResults";
+// import Breakfast from './Breakfast';
+// import Lunch from './Lunch';
+// import Dinner from './Dinner';
+// import Snack from './Snack';
 
-class Breakfast extends Component {
+// import BreakfastComp from "./BreakfastComp";
+
+class ApiCalls extends Component {
   constructor() {
     super();
     this.state = {
@@ -259,26 +264,9 @@ class Breakfast extends Component {
 
   render() {
     return (
-      <div className="breakfast">
-        <form className="foodSelector">
-          <label htmlFor="foodMenu">Select what you would Like</label>
-          <select id="foodMenu" onChange={this.handleChange}>
-            <option value="waffles">Waffles</option>
-            <option value="pancakes">Pancakes</option>
-            <option value="cereal">Cereal</option>
-            <option value="breakfast sandwich">Breakfast Sandwich</option>
-            <option value="yogurt">Yogurt</option>
-            <option value="fruit salad">Fruit Salad</option>
-            <option value="eggs and bacon">Eggs and Bacon</option>
-            <option value="english muffin">English Muffin</option>
-            <option value="sausage">Sausage</option>
-            <option value="cake">Cake</option>
-          </select>
-        </form>
-        <UserResults results={this.state} subClick={this.subClick} />
-      </div>
+      <UserInput mainState={this.state} handleChange={this.handleChange} subClick={this.subClick}/>
     );
   }
 }
 
-export default Breakfast;
+export default ApiCalls;
