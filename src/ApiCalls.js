@@ -23,6 +23,10 @@ class ApiCalls extends Component {
       lunch: false,
       dinner: false,
       snack: false,
+      userImage: "",
+      userImageAlt: "",
+      recoImage: "",
+      recoImageAlt: "",
     };
   }
 
@@ -39,7 +43,36 @@ class ApiCalls extends Component {
       checkUserChoice: false,
     });
     console.log(this.state.checkUserChoice);
-    
+
+    axios({
+      url: `https://api.unsplash.com/photos/random`,
+      method: "GET",
+      responseType: "json",
+      params: {
+        client_id: "XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA",
+        query: `${this.state.userInput}`,
+        orientation: "landscape",
+      },
+      proxyHeaders: {
+        "Some-Header": "goes here",
+      },
+      xmlToJSON: false,
+      useCache: false,
+    }).then(function (response) {
+      console.log(response);
+
+      let unsplashUrl = response.data.urls.small;
+      let altTag = response.data.alt_description;
+
+      console.log(unsplashUrl);
+      console.log(altTag);
+      
+      this.setState({
+        userImage: unsplashUrl,
+        userImageAlt: altTag
+      })
+    });
+
   };
 
   handleBreakfastClick = () => {
@@ -51,7 +84,6 @@ class ApiCalls extends Component {
     });
     console.log(`breakfast ${this.state.breakfast}`);
     console.log(`breakfast checkUserChoice ${this.state.checkUserChoice}`);
-    
   };
   handleLunchClick = () => {
     this.setState({
@@ -61,7 +93,6 @@ class ApiCalls extends Component {
       snack: false,
     });
     console.log(`lunch ${this.state.lunch}`);
-    
   };
   handleDinnerClick = () => {
     this.setState({
@@ -307,11 +338,8 @@ class ApiCalls extends Component {
     } else {
       alert("Go ahead! Eat it!");
     }
- 
-    
   };
   render() {
-
     return (
       <UserInput
         results={this.state}

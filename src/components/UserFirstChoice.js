@@ -12,6 +12,7 @@ class UserFirstChoice extends Component {
 					<li>Protein: {this.props.results.usersFood[3]} g</li>
 					<li>Carbohydrates: {this.props.results.usersFood[4]} g</li>
 				</ul>
+				<img src={this.props.results.userImage} alt={this.props.results.userImageAlt} />
 				<button onClick={this.props.subClick}>Give me a substitute</button>
 
 			</Fragment>
