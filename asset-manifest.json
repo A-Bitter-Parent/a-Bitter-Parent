@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/a-Bitter-Parent/static/css/main.5f361e03.chunk.css",
-    "main.js": "/a-Bitter-Parent/static/js/main.9b14f951.chunk.js",
-    "main.js.map": "/a-Bitter-Parent/static/js/main.9b14f951.chunk.js.map",
+    "main.js": "/a-Bitter-Parent/static/js/main.4090b261.chunk.js",
+    "main.js.map": "/a-Bitter-Parent/static/js/main.4090b261.chunk.js.map",
     "runtime-main.js": "/a-Bitter-Parent/static/js/runtime-main.b97b6479.js",
     "runtime-main.js.map": "/a-Bitter-Parent/static/js/runtime-main.b97b6479.js.map",
-    "static/js/2.4970564f.chunk.js": "/a-Bitter-Parent/static/js/2.4970564f.chunk.js",
-    "static/js/2.4970564f.chunk.js.map": "/a-Bitter-Parent/static/js/2.4970564f.chunk.js.map",
+    "static/js/2.0169dc4b.chunk.js": "/a-Bitter-Parent/static/js/2.0169dc4b.chunk.js",
+    "static/js/2.0169dc4b.chunk.js.map": "/a-Bitter-Parent/static/js/2.0169dc4b.chunk.js.map",
     "index.html": "/a-Bitter-Parent/index.html",
-    "precache-manifest.0a4d09e567a523bda0dc6db5d0f3a36e.js": "/a-Bitter-Parent/precache-manifest.0a4d09e567a523bda0dc6db5d0f3a36e.js",
+    "precache-manifest.112ed1277b55c98e5739e98122856ed4.js": "/a-Bitter-Parent/precache-manifest.112ed1277b55c98e5739e98122856ed4.js",
     "service-worker.js": "/a-Bitter-Parent/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/a-Bitter-Parent/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.4970564f.chunk.js.LICENSE.txt": "/a-Bitter-Parent/static/js/2.4970564f.chunk.js.LICENSE.txt"
+    "static/js/2.0169dc4b.chunk.js.LICENSE.txt": "/a-Bitter-Parent/static/js/2.0169dc4b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b97b6479.js",
-    "static/js/2.4970564f.chunk.js",
+    "static/js/2.0169dc4b.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.9b14f951.chunk.js"
+    "static/js/main.4090b261.chunk.js"
   ]
 }
