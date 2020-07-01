@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import UserInput from "./components/UserInput";
+import firebase from './firebase'
+import DisplaySavedFoods from "./components/DisplaySavedFoods";
 
 class ApiCalls extends Component {
   constructor() {
@@ -21,6 +23,7 @@ class ApiCalls extends Component {
       userImageAlt: "",
       recoImage: "",
       recoImageAlt: "",
+      firebaseObj: {},
     };
   }
 
@@ -88,12 +91,15 @@ class ApiCalls extends Component {
         checkUserChoice: true,
       });
 
+
+      const mikesUnsplashKey = 'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA'
+      const thusasUnsplashKey = 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts';
       axios({
         url: 'https://api.unsplash.com/photos/random',
         method: "GET",
         responseType: "JSON",
         params: {
-          client_id: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+          client_id: mikesUnsplashKey,
           query: this.state.userInput,
           orientation: "landscape",
         },
@@ -171,6 +177,24 @@ class ApiCalls extends Component {
         console.log(this.state.usersFood);
       });
     }
+  }
+
+  handleSave = (event) => {
+    console.log('clicked');
+    event.preventDefault();
+    const dbRef = firebase.database().ref();
+    let userFoodOption = this.state.usersFood;
+    let userRecoOption = this.state.recommendedFood;
+    let userFoodName = this.state.userInput;
+    let userRecoName = this.state.recoFoodTitle;
+    
+    const firebaseObj = {
+      food1: {userFoodName,userFoodOption},
+      food2: {userRecoName, userRecoOption}
+
+    }
+    console.log(firebaseObj);
+    dbRef.push(firebaseObj);
   }
 
   subClick = () => {
@@ -385,15 +409,20 @@ class ApiCalls extends Component {
   };
   render() {
     return (
-      <UserInput
-        results={this.state}
-        handleChange={this.handleChange}
-        subClick={this.subClick}
-        handleBreakfastClick={this.handleBreakfastClick}
-        handleLunchClick={this.handleLunchClick}
-        handleDinnerClick={this.handleDinnerClick}
-        handleSnackClick={this.handleSnackClick}
-      />
+      <div>
+        <UserInput
+          results={this.state}
+          handleChange={this.handleChange}
+          subClick={this.subClick}
+          handleBreakfastClick={this.handleBreakfastClick}
+          handleLunchClick={this.handleLunchClick}
+          handleDinnerClick={this.handleDinnerClick}
+          handleSnackClick={this.handleSnackClick}
+          handleSave={this.handleSave}
+        />
+        {this.state.checkReco ? <button onClick={this.handleSave}>Save selection</button> : null}
+        {this.state.checkReco ? <DisplaySavedFoods /> : null}
+      </div>
     );
   }
 }

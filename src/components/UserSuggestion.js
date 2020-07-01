@@ -14,6 +14,7 @@ class UserSuggestion extends Component {
 					<li>Carbohydrates: {this.props.results.recommendedFood[4]} g</li>
 				</ul>
 				<img src={this.props.results.recoImage} alt={this.props.results.recoImageAlt} />
+				{/* <button onClick={this.props.handleSave}>Save selection</button> */}
 			</div>
 		)
 	}
