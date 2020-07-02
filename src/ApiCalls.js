@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import UserInput from "./components/UserInput";
-import firebase from './firebase'
+import firebase from "./firebase";
 import DisplaySavedFoods from "./components/DisplaySavedFoods";
 
 class ApiCalls extends Component {
@@ -24,8 +24,11 @@ class ApiCalls extends Component {
       recoImage: "",
       recoImageAlt: "",
       firebaseObj: {},
+
       // unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
-      unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+
+      // unsplashKey: 'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+
 
     };
   }
@@ -43,7 +46,6 @@ class ApiCalls extends Component {
       checkUserChoice: false,
     });
     console.log(this.state.checkUserChoice);
-
   };
 
   handleBreakfastClick = () => {
@@ -55,7 +57,7 @@ class ApiCalls extends Component {
       checkUserChoice: false,
       checkReco: false,
     });
-  }
+  };
   handleLunchClick = () => {
     this.setState({
       breakfast: false,
@@ -65,7 +67,7 @@ class ApiCalls extends Component {
       checkUserChoice: false,
       checkReco: false,
     });
-  }
+  };
   handleDinnerClick = () => {
     this.setState({
       breakfast: false,
@@ -75,7 +77,7 @@ class ApiCalls extends Component {
       checkUserChoice: false,
       checkReco: false,
     });
-  }
+  };
   handleSnackClick = () => {
     this.setState({
       breakfast: false,
@@ -85,7 +87,7 @@ class ApiCalls extends Component {
       checkUserChoice: false,
       checkReco: false,
     });
-  }
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.userInput !== this.state.userInput) {
@@ -96,13 +98,14 @@ class ApiCalls extends Component {
 
 
       axios({
-        url: 'https://api.unsplash.com/photos/random',
+        url: "https://api.unsplash.com/photos/random",
         method: "GET",
         responseType: "JSON",
         params: {
           client_id: this.state.unsplashKey,
-          query: this.state.userInput,
-          orientation: "landscape",
+
+          query: `${this.state.userInput} plate`,
+
         },
       }).then((response) => {
         console.log(response);
@@ -112,8 +115,8 @@ class ApiCalls extends Component {
 
         this.setState({
           userImage: unsplashUrl,
-          userImageAlt: altTag
-        })
+          userImageAlt: altTag,
+        });
       });
 
       axios({
@@ -181,28 +184,36 @@ class ApiCalls extends Component {
   }
 
   handleSave = (event) => {
-    console.log('clicked');
+    console.log("clicked");
     event.preventDefault();
     const dbRef = firebase.database().ref();
     let userFoodOption = this.state.usersFood;
     let userRecoOption = this.state.recommendedFood;
     let userFoodName = this.state.userInput;
     let userRecoName = this.state.recoFoodTitle;
-    
-    const firebaseObj = {
-      food1: {userFoodName,userFoodOption},
-      food2: {userRecoName, userRecoOption}
 
-    }
+    const firebaseObj = {
+      food1: { userFoodName, userFoodOption },
+      food2: { userRecoName, userRecoOption },
+    };
     console.log(firebaseObj);
     dbRef.push(firebaseObj);
-  }
+  };
 
   subClick = () => {
     this.setState({
       checkReco: true,
     });
     console.log(this.state.checkReco);
+
+
+    let randItem = 1;
+    let noOfRes;
+    if (noOfRes = 20) {
+      randItem = (Math.floor(Math.random() * 20))
+    } else {
+      randItem = Math.floor(Math.random() * noOfRes);
+    }
 
 
     if (this.state.sugarValue >= 10) {
@@ -227,7 +238,8 @@ class ApiCalls extends Component {
         },
       }).then((response) => {
         console.log(this.state.sugarValue);
-        console.log(response.data.common.length)
+        console.log(response.data.common.length);
+
 
         console.log("if first call is more than 10");    
         
@@ -238,6 +250,7 @@ class ApiCalls extends Component {
         } else {
         randItem = Math.floor(Math.random() * noOfRes);
         }
+
 
         const nutObj = response.data.common[randItem].full_nutrients;
 
@@ -286,7 +299,7 @@ class ApiCalls extends Component {
         console.log(this.state.recommendedFood);
 
         noOfRes = this.state.recommendedFood.length;
-        console.log(noOfRes)
+        console.log(noOfRes);
       });
 
       axios({
@@ -294,12 +307,12 @@ class ApiCalls extends Component {
         method: "GET",
         responseType: "JSON",
         params: {
-          client_id: this.state.unsplashKey,
-          query: `${this.state.recoFoodTitle} food`,
-          orientation: "landscape",
+
+          client_id: `${this.state.unsplashKey} plate`,
+          query: this.state.recoFoodTitle,
+
         },
       }).then((response) => {
-        console.log(this.state.recoFoodTitle);
 
         let unsplashUrl = response.data.urls.small;
         let altTag = response.data.alt_description;
@@ -309,7 +322,7 @@ class ApiCalls extends Component {
           recoImageAlt: altTag
         })
       });
-
+      console.log(this.state.recoFoodTitle);
     } else if (this.state.sugarValue < 10) {
       axios({
         url: "https://trackapi.nutritionix.com/v2/search/instant",
@@ -389,8 +402,6 @@ class ApiCalls extends Component {
           recommendedFood: newObj,
           recoFoodTitle: response.data.common[randItem].food_name,
         });
-        console.log(this.state.recommendedFood);
-      });
 
       axios({
         url: 'https://api.unsplash.com/photos/random',
@@ -398,21 +409,22 @@ class ApiCalls extends Component {
         responseType: "JSON",
         params: {
           client_id: this.state.unsplashKey,
-          query: `${this.state.recoFoodTitle} food`,
-          orientation: "landscape",
+
+          query: `${this.state.recoFoodTitle} plate`,
+
         },
       }).then((response) => {
         console.log(this.state.recoFoodTitle);
+          
+          let unsplashUrl = response.data.urls.small;
+          let altTag = response.data.alt_description;
 
-        let unsplashUrl = response.data.urls.small;
-        let altTag = response.data.alt_description;
-
-        this.setState({
-          recoImage: unsplashUrl,
-          recoImageAlt: altTag
-        })
+          this.setState({
+            recoImage: unsplashUrl,
+            recoImageAlt: altTag,
+          });
+        });
       });
-
     } else {
       alert("Go ahead! Eat it!");
     }
