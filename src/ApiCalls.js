@@ -8,25 +8,27 @@ class ApiCalls extends Component {
   constructor() {
     super();
     this.state = {
-			userInput: "",
-			recoFoodTitle: "",
-			sugarValue: "",
-			usersFood: [],
-			recommendedFood: [],
-			checkReco: false,
-			checkUserChoice: false,
-			breakfast: false,
-			lunch: false,
-			dinner: false,
-			snack: false,
-			userImage: "",
-			userImageAlt: "",
-			recoImage: "",
-			recoImageAlt: "",
-			firebaseObj: {},
-			// unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
-			unsplashKey: "wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts",
-		};
+      userInput: "",
+      recoFoodTitle: "",
+      sugarValue: "",
+      usersFood: [],
+      recommendedFood: [],
+      checkReco: false,
+      checkUserChoice: false,
+      breakfast: false,
+      lunch: false,
+      dinner: false,
+      snack: false,
+      userImage: "",
+      userImageAlt: "",
+      recoImage: "",
+      recoImageAlt: "",
+      firebaseObj: {},
+      // unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+      unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+      sugarAllowed: 0,
+    };
+
   }
   unsplashCall = (query) => {
       axios({
@@ -35,12 +37,14 @@ class ApiCalls extends Component {
 			responseType: "JSON",
 			params: {
 				client_id: this.state.unsplashKey,
-				query:`${query}`,
-			},
+        query:`${query}`,
+        orientation: "squarish"
+        // collections: 386111,
+    },
 		}).then((response) => {
 			console.log(response);
 
-			let unsplashUrl = response.data.urls.small;
+			let unsplashUrl = response.data.urls.regular;
 			let altTag = response.data.alt_description;
 
 			this.setState({
@@ -95,6 +99,7 @@ class ApiCalls extends Component {
             carbohydratesAmount = Math.round(nutObj[i].value);
           }
         }
+
 
         if (fatAmount === undefined) {
           fatAmount = 0;
@@ -312,8 +317,16 @@ class ApiCalls extends Component {
     //   randItem = Math.floor(Math.random() * noOfRes);
     // }
 
-
-
+    const isWild = (Math.floor(Math.random() * 10));
+    if (isWild === 0) {
+      this.setState({
+        sugarAllowed : this.state.sugarValue - 5,
+      })
+    } else {
+      this.setState({
+        sugarAllowed : this.state.sugarValue - 10,
+      })
+      }
 
       // this.nutritionixCall("vegetables || fruits || grains", this.state.sugarValue - 10);
       axios({
@@ -331,7 +344,7 @@ class ApiCalls extends Component {
           detailed: true,
           full_nutrients: {
             "269": {
-              lte: this.state.sugarValue - 10,
+              lte: this.state.sugarAllowed,
             },
           },
         },
@@ -342,13 +355,9 @@ class ApiCalls extends Component {
 
         console.log("if first call is more than 10");    
         
-        let randItem = 1;
+        let randItem;
         let noOfRes = this.state.recommendedFood.length;
-        if ((noOfRes = 20)) {
-        randItem = Math.floor(Math.random() * 20);
-        } else {
         randItem = Math.floor(Math.random() * noOfRes);
-        }
 
 
         const nutObj = response.data.common[randItem].full_nutrients;
@@ -399,8 +408,8 @@ class ApiCalls extends Component {
         console.log(this.state.recoFoodTitle)
         
 
-        noOfRes = this.state.recommendedFood.length;
-        console.log(noOfRes);
+        // noOfRes = this.state.recommendedFood.length;
+        // console.log(noOfRes);
       });
 
       // axios({
@@ -516,9 +525,14 @@ class ApiCalls extends Component {
         params: {
           client_id: this.state.unsplashKey,
           query: `${this.state.recoFoodTitle}`,
+          orientation: "squarish"
+          // collections: 386111,
+
         },
       }).then((response) => {
         console.log(this.state.recoFoodTitle);
+        console.log(response);
+        
           let unsplashUrl = response.data.urls.small;
           let altTag = response.data.alt_description;
 
