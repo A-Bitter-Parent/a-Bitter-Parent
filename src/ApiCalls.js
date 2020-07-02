@@ -35,7 +35,7 @@ class ApiCalls extends Component {
 			responseType: "JSON",
 			params: {
 				client_id: this.state.unsplashKey,
-				query:`${query} plate`,
+				query:`${query}`,
 			},
 		}).then((response) => {
 			console.log(response);
@@ -304,236 +304,230 @@ class ApiCalls extends Component {
     console.log(this.state.checkReco);
 
 
-    let randItem = 1;
-    let noOfRes;
-    if (noOfRes = 20) {
-      randItem = (Math.floor(Math.random() * 20))
-    } else {
-      randItem = Math.floor(Math.random() * noOfRes);
-    }
+    // let randItem = 1;
+    // let noOfRes;
+    // if (noOfRes = 20) {
+    //   randItem = (Math.floor(Math.random() * 20))
+    // } else {
+    //   randItem = Math.floor(Math.random() * noOfRes);
+    // }
 
 
-			
-    // if (this.state.sugarValue >= 10) {
-
-      this.nutritionixCall(
-			"vegetables || fruits || grains",
-			this.state.sugarValue - 10, 
-    );
-    // response.data.common[randItem].food_name
-    //   // axios({
-    //   //   url: "https://trackapi.nutritionix.com/v2/search/instant",
-    //   //   method: "POST",
-    //   //   responseType: "JSON",
-    //   //   headers: {
-    //   //     "Content-Type": "application/json",
-    //   //     "x-app-id": "2f61b616",
-    //   //     "x-app-key": "3c2af909b8bc091e21372b59a9e4b835",
-    //   //     "x-remote-user-id": "0",
-    //   //   },
-    //   //   data: {
-    //   //     query: "vegetables || fruits || grains",
-    //   //     detailed: true,
-    //   //     full_nutrients: {
-    //   //       "269": {
-    //   //         lte: this.state.sugarValue - 10,
-    //   //       },
-    //   //     },
-    //   //   },
-    //   // }).then((response) => {
-    //   //   console.log(this.state.sugarValue);
-    //   //   console.log(response.data.common.length);
 
 
-    //   //   console.log("if first call is more than 10");    
+      // this.nutritionixCall("vegetables || fruits || grains", this.state.sugarValue - 10);
+      axios({
+        url: "https://trackapi.nutritionix.com/v2/search/instant",
+        method: "POST",
+        responseType: "JSON",
+        headers: {
+          "Content-Type": "application/json",
+          "x-app-id": "2f61b616",
+          "x-app-key": "3c2af909b8bc091e21372b59a9e4b835",
+          "x-remote-user-id": "0",
+        },
+        data: {
+          query: "vegetables || fruits || grains",
+          detailed: true,
+          full_nutrients: {
+            "269": {
+              lte: this.state.sugarValue - 10,
+            },
+          },
+        },
+      }).then((response) => {
+        console.log(this.state.sugarValue);
+        console.log(response.data.common.length);
+
+
+        console.log("if first call is more than 10");    
         
-    //   //   let randItem = 1;
-    //   //   let noOfRes = this.state.recommendedFood.length;
-    //   //   if ((noOfRes = 20)) {
-    //   //   randItem = Math.floor(Math.random() * 20);
-    //   //   } else {
-    //   //   randItem = Math.floor(Math.random() * noOfRes);
-    //   //   }
+        let randItem = 1;
+        let noOfRes = this.state.recommendedFood.length;
+        if ((noOfRes = 20)) {
+        randItem = Math.floor(Math.random() * 20);
+        } else {
+        randItem = Math.floor(Math.random() * noOfRes);
+        }
 
 
-    //   //   const nutObj = response.data.common[randItem].full_nutrients;
+        const nutObj = response.data.common[randItem].full_nutrients;
 
-    //   //   let sugarAmount;
-    //   //   let fatAmount;
-    //   //   let calorieAmount;
-    //   //   let proteinAmount;
-    //   //   let carbohydratesAmount;
-    //   //   for (let i = 0; i < nutObj.length; i++) {
-    //   //     if (nutObj[i].attr_id === 269) {
-    //   //       sugarAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 204) {
-    //   //       fatAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 208) {
-    //   //       calorieAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 203) {
-    //   //       proteinAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 205) {
-    //   //       carbohydratesAmount = Math.round(nutObj[i].value);
-    //   //     }
-    //   //   }
+        let sugarAmount;
+        let fatAmount;
+        let calorieAmount;
+        let proteinAmount;
+        let carbohydratesAmount;
+        for (let i = 0; i < nutObj.length; i++) {
+          if (nutObj[i].attr_id === 269) {
+            sugarAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 204) {
+            fatAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 208) {
+            calorieAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 203) {
+            proteinAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 205) {
+            carbohydratesAmount = Math.round(nutObj[i].value);
+          }
+        }
 
         
 
-    //   //   if (fatAmount === undefined) {
-    //   //     fatAmount = 0;
-    //   //   } else if (calorieAmount === undefined) {
-    //   //     calorieAmount = 0;
-    //   //   } else if (proteinAmount === undefined) {
-    //   //     proteinAmount = 0;
-    //   //   } else if (carbohydratesAmount === undefined) {
-    //   //     carbohydratesAmount = 0;
-    //   //   }
+        if (fatAmount === undefined) {
+          fatAmount = 0;
+        } else if (calorieAmount === undefined) {
+          calorieAmount = 0;
+        } else if (proteinAmount === undefined) {
+          proteinAmount = 0;
+        } else if (carbohydratesAmount === undefined) {
+          carbohydratesAmount = 0;
+        }
 
-    //   //   const newObj = [
-    //   //     fatAmount,
-    //   //     calorieAmount,
-    //   //     sugarAmount,
-    //   //     proteinAmount,
-    //   //     carbohydratesAmount,
-    //   //   ];
-    //   //   this.setState({
-    //   //     recommendedFood: newObj,
-    //   //     recoFoodTitle: response.data.common[randItem].food_name,
-    //   //   });
-    //   //   console.log(this.state.recommendedFood);
+        const newObj = [
+          fatAmount,
+          calorieAmount,
+          sugarAmount,
+          proteinAmount,
+          carbohydratesAmount,
+        ];
+        this.setState({
+          recommendedFood: newObj,
+          recoFoodTitle: response.data.common[randItem].food_name,
+        });
+        console.log(this.state.recommendedFood);
+        console.log(this.state.recoFoodTitle)
+        
 
-    //   //   noOfRes = this.state.recommendedFood.length;
-    //   //   console.log(noOfRes);
-    //   // });
+        noOfRes = this.state.recommendedFood.length;
+        console.log(noOfRes);
+      });
 
-    //   // axios({
-    //   //   url: 'https://api.unsplash.com/photos/random',
-    //   //   method: "GET",
-    //   //   responseType: "JSON",
-    //   //   params: {
+      // axios({
+      //   url: 'https://api.unsplash.com/photos/random',
+      //   method: "GET",
+      //   responseType: "JSON",
+      //   params: {
 
-    //   //     client_id: `${this.state.unsplashKey} plate`,
-    //   //     query: this.state.recoFoodTitle,
+      //     client_id: `${this.state.unsplashKey} plate`,
+      //     query: this.state.recoFoodTitle,
 
-    //   //   },
-    //   // }).then((response) => {
+      //   },
+      // }).then((response) => {
 
-    //   //   let unsplashUrl = response.data.urls.small;
-    //   //   let altTag = response.data.alt_description;
+      //   let unsplashUrl = response.data.urls.small;
+      //   let altTag = response.data.alt_description;
 
-    //   //   this.setState({
-    //   //     recoImage: unsplashUrl,
-    //   //     recoImageAlt: altTag
-    //   //   })
-    //   // });
-    //   // console.log(this.state.recoFoodTitle);
+      //   this.setState({
+      //     recoImage: unsplashUrl,
+      //     recoImageAlt: altTag
+      //   })
+      // });
+      // console.log(this.state.recoFoodTitle);
 
-    //   this.unsplashCall(this.state.recoFoodTitle)
+      // this.unsplashCall(this.state.recoFoodTitle)
       
     // } else if (this.state.sugarValue < 10) {
-    //   // axios({
-    //   //   url: "https://trackapi.nutritionix.com/v2/search/instant",
-    //   //   method: "POST",
-    //   //   responseType: "JSON",
-    //   //   headers: {
-    //   //     "Content-Type": "application/json",
-    //   //     "x-app-id": "2f61b616",
-    //   //     "x-app-key": "3c2af909b8bc091e21372b59a9e4b835",
-    //   //     "x-remote-user-id": "0",
-    //   //   },
-    //   //   data: {
-    //   //     query: "vegetables || fruits || grains",
-    //   //     detailed: true,
-    //   //     full_nutrients: {
-    //   //       "269": {
-    //   //         lte: this.state.sugarValue,
-    //   //       },
-    //   //     },
-    //   //   },
-    //   // }).then((response) => {
-    //   //   // console.log(response.data.common[randItem]);
-    //   //   console.log("if first call is less than 10 but greater than 0");
+      // axios({
+      //   url: "https://trackapi.nutritionix.com/v2/search/instant",
+      //   method: "POST",
+      //   responseType: "JSON",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "x-app-id": "2f61b616",
+      //     "x-app-key": "3c2af909b8bc091e21372b59a9e4b835",
+      //     "x-remote-user-id": "0",
+      //   },
+      //   data: {
+      //     query: "vegetables || fruits || grains",
+      //     detailed: true,
+      //     full_nutrients: {
+      //       "269": {
+      //         lte: this.state.sugarValue,
+      //       },
+      //     },
+      //   },
+      // }).then((response) => {
+      //   // console.log(response.data.common[randItem]);
+      //   console.log("if first call is less than 10 but greater than 0");
 
-    //   //   let randItem = 1;
-    //   //   let noOfRes = this.state.recommendedFood.length;
-    //   //   if ((noOfRes = 20)) {
-    //   //     randItem = Math.floor(Math.random() * 20);
-    //   //   } else {
-    //   //     randItem = Math.floor(Math.random() * noOfRes);
-    //   //   }
+      //   let randItem = 1;
+      //   let noOfRes = this.state.recommendedFood.length;
+      //   if ((noOfRes = 20)) {
+      //     randItem = Math.floor(Math.random() * 20);
+      //   } else {
+      //     randItem = Math.floor(Math.random() * noOfRes);
+      //   }
 
-    //   //   if (response.data.common[randItem] === undefined) {
-    //   //     alert("Go ahead! Eat it!");
-    //   //   }
+      //   if (response.data.common[randItem] === undefined) {
+      //     alert("Go ahead! Eat it!");
+      //   }
 
-    //   //   const nutObj = response.data.common[randItem].full_nutrients;
-    //   //   let sugarAmount;
-    //   //   let fatAmount;
-    //   //   let calorieAmount;
-    //   //   let proteinAmount;
-    //   //   let carbohydratesAmount;
-    //   //   for (let i = 0; i < nutObj.length; i++) {
-    //   //     if (nutObj[i].attr_id === 269) {
-    //   //       sugarAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 204) {
-    //   //       fatAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 208) {
-    //   //       calorieAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 203) {
-    //   //       proteinAmount = Math.round(nutObj[i].value);
-    //   //     } else if (nutObj[i].attr_id === 205) {
-    //   //       carbohydratesAmount = Math.round(nutObj[i].value);
-    //   //     }
-    //   //   }
+      //   const nutObj = response.data.common[randItem].full_nutrients;
+      //   let sugarAmount;
+      //   let fatAmount;
+      //   let calorieAmount;
+      //   let proteinAmount;
+      //   let carbohydratesAmount;
+      //   for (let i = 0; i < nutObj.length; i++) {
+      //     if (nutObj[i].attr_id === 269) {
+      //       sugarAmount = Math.round(nutObj[i].value);
+      //     } else if (nutObj[i].attr_id === 204) {
+      //       fatAmount = Math.round(nutObj[i].value);
+      //     } else if (nutObj[i].attr_id === 208) {
+      //       calorieAmount = Math.round(nutObj[i].value);
+      //     } else if (nutObj[i].attr_id === 203) {
+      //       proteinAmount = Math.round(nutObj[i].value);
+      //     } else if (nutObj[i].attr_id === 205) {
+      //       carbohydratesAmount = Math.round(nutObj[i].value);
+      //     }
+      //   }
 
-    //   //   if (fatAmount === undefined) {
-    //   //     fatAmount = 0;
-    //   //   } else if (calorieAmount === undefined) {
-    //   //     calorieAmount = 0;
-    //   //   } else if (proteinAmount === undefined) {
-    //   //     proteinAmount = 0;
-    //   //   } else if (sugarAmount === undefined) {
-    //   //     sugarAmount = 0;
-    //   //   } else if (carbohydratesAmount === undefined) {
-    //   //     carbohydratesAmount = 0;
-    //   //   }
+      //   if (fatAmount === undefined) {
+      //     fatAmount = 0;
+      //   } else if (calorieAmount === undefined) {
+      //     calorieAmount = 0;
+      //   } else if (proteinAmount === undefined) {
+      //     proteinAmount = 0;
+      //   } else if (sugarAmount === undefined) {
+      //     sugarAmount = 0;
+      //   } else if (carbohydratesAmount === undefined) {
+      //     carbohydratesAmount = 0;
+      //   }
 
-    //   //   const newObj = [
-    //   //     fatAmount,
-    //   //     calorieAmount,
-    //   //     sugarAmount,
-    //   //     proteinAmount,
-    //   //     carbohydratesAmount,
-    //   //   ];
-    //   //   this.setState({
-    //   //     recommendedFood: newObj,
-    //   //     recoFoodTitle: response.data.common[randItem].food_name,
-    //   //   });
-    //   this.nutritionixCall("vegetables || fruits || grains", this.state.sugarValue);
+      //   const newObj = [
+      //     fatAmount,
+      //     calorieAmount,
+      //     sugarAmount,
+      //     proteinAmount,
+      //     carbohydratesAmount,
+      //   ];
+      //   this.setState({
+      //     recommendedFood: newObj,
+      //     recoFoodTitle: response.data.common[randItem].food_name,
+      //   });
+      // this.nutritionixCall("vegetables || fruits || grains", this.state.sugarValue);
 
 
-    //   // axios({
-    //   //   url: 'https://api.unsplash.com/photos/random',
-    //   //   method: "GET",
-    //   //   responseType: "JSON",
-    //   //   params: {
-    //   //     client_id: this.state.unsplashKey,
+      axios({
+        url: 'https://api.unsplash.com/photos/random',
+        method: "GET",
+        responseType: "JSON",
+        params: {
+          client_id: this.state.unsplashKey,
+          query: `${this.state.recoFoodTitle}`,
+        },
+      }).then((response) => {
+        console.log(this.state.recoFoodTitle);
+          let unsplashUrl = response.data.urls.small;
+          let altTag = response.data.alt_description;
 
-    //   //     query: `${this.state.recoFoodTitle} plate`,
-
-    //   //   },
-    //   // }).then((response) => {
-    //   //   console.log(this.state.recoFoodTitle);
-          
-    //   //     let unsplashUrl = response.data.urls.small;
-    //   //     let altTag = response.data.alt_description;
-
-    //   //     this.setState({
-    //   //       recoImage: unsplashUrl,
-    //   //       recoImageAlt: altTag,
-    //   //     });
-    //   //   });
-    //   // });
+          this.setState({
+            recoImage: unsplashUrl,
+            recoImageAlt: altTag,
+          });
+        });
+      
     // this.unsplashCall(this.state.recoFoodTitle);
 
     // } else {

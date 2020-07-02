@@ -68,8 +68,18 @@ justify-content: space-around;
 }
 
 .food {
-
 	ul {
 		width: 40%;
+	}
+}
+
+.image {
+	width: 30vh;
+	height: 30vh;
+	overflow: hidden;
+	
+	img {
+		object-fit: cover;
+
 	}
 }

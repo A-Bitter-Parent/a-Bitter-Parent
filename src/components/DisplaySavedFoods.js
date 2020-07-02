@@ -43,35 +43,39 @@ class DisplaySavedFoods extends Component {
                             <div key={key} 
                             className="food">
                                 <ul>
-                                    <li>{food.food1.userFoodName}</li>
+                                    <li><h2>
+                                        {food.food1.userFoodName}
+                                    </h2></li>
                                     <li>
                                         <ul>
-                                            <li>Fat Amount: {food.food1.userFoodOption[0]}</li>
-                                            <li>Calories: {food.food1.userFoodOption[1]}</li>
-                                            <li>Sugar: {food.food1.userFoodOption[2]}</li>
-                                            <li>Protein: {food.food1.userFoodOption[3]}</li>
-                                            <li>Carbohydrates: {food.food1.userFoodOption[4]}</li>
+                                            <li><span>Fat Amount:</span> {food.food1.userFoodOption[0]}g</li>
+                                            <li><span>Calories:</span> {food.food1.userFoodOption[1]}kJ</li>
+                                            <li><span>Sugar:</span> {food.food1.userFoodOption[2]}g</li>
+                                            <li><span>Protein:</span> {food.food1.userFoodOption[3]}g</li>
+                                            <li><span>Carbohydrates:</span> {food.food1.userFoodOption[4]}g</li>
                                         </ul>
                                     </li>
                                 </ul>
 
                                 <ul>
-                                    <li>{food.food2.userRecoName}</li>
+                                    <li><h2>
+                                        {food.food2.userRecoName}
+                                    </h2></li>
                                     <li>
                                         <ul>
-                                            <li>Fat Amount: {food.food2.userRecoOption[0]}</li>
-                                            <li>Calories: {food.food2.userRecoOption[1]}</li>
-                                            <li>Sugar: {food.food2.userRecoOption[2]}</li>
-                                            <li>Protein: {food.food2.userRecoOption[3]}</li>
-                                            <li>Carbohydrates: {food.food2.userRecoOption[4]}</li>
+                                            <li><span>Fat Amount:</span> {food.food2.userRecoOption[0]}g</li>
+                                            <li><span>Calories:</span> {food.food2.userRecoOption[1]}kJ</li>
+                                            <li><span>Sugar: </span>{food.food2.userRecoOption[2]}g</li>
+                                            <li><span>Protein: </span>{food.food2.userRecoOption[3]}g</li>
+                                            <li><span>Carbohydrates:</span> {food.food2.userRecoOption[4]}g</li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
 
-                            <button onClick={() => {
-                                this.deleteActivity(key);
-                                }}>Delete</button>
+                            <div className="button"><button onClick={() => {
+                            this.deleteActivity(key);
+                            }}>Delete</button></div>
                         </Fragment>
                     );
                 })}
