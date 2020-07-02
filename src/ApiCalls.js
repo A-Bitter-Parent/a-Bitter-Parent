@@ -365,7 +365,7 @@ nutritionixCall = (query, sugar) => {
         }
 
 
-        const nutObj = response.data.common[0].full_nutrients;
+        const nutObj = response.data.common[randItem].full_nutrients;
 
         let sugarAmount;
         let fatAmount;
@@ -407,7 +407,7 @@ nutritionixCall = (query, sugar) => {
         ];
         this.setState({
           recommendedFood: newObj,
-          recoFoodTitle: response.data.common[0].food_name,
+          recoFoodTitle: response.data.common[randItem].food_name,
         });
         console.log(this.state.recommendedFood);
         console.log(this.state.recoFoodTitle)
