@@ -28,6 +28,7 @@ class ApiCalls extends Component {
       unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
       sugarAllowed: 0,
     };
+
   }
   unsplashCall = (query) => {
       axios({
@@ -51,92 +52,98 @@ class ApiCalls extends Component {
 				userImageAlt: altTag,
 			});
 		});
-}
+  }
 
-nutritionixCall = (query, sugar) => {
-      axios({
-			url: "https://trackapi.nutritionix.com/v2/search/instant",
-			method: "POST",
-			responseType: "JSON",
-			headers: {
-				"Content-Type": "application/json",
-				"x-app-id": "2f61b616",
-				"x-app-key": "3c2af909b8bc091e21372b59a9e4b835",
-				"x-remote-user-id": "0",
-			},
-			data: {
-				query: query,
-        detailed: true,
-        full_nutrients: {
-          "269": {
-            "lte": sugar
+  nutritionixCall = (query, sugar) => {
+
+        axios({
+        url: "https://trackapi.nutritionix.com/v2/search/instant",
+        method: "POST",
+        responseType: "JSON",
+        headers: {
+          "Content-Type": "application/json",
+          "x-app-id": "2f61b616",
+          "x-app-key": "3c2af909b8bc091e21372b59a9e4b835",
+          "x-remote-user-id": "0",
+        },
+        data: {
+          query: query,
+          detailed: true,
+          full_nutrients: {
+            "269": {
+              "lte": sugar
+            }
+          }
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        console.log("initial request");
+
+        const nutObj = response.data.common[0].full_nutrients;
+        let sugarAmount;
+        let fatAmount;
+        let calorieAmount;
+        let proteinAmount;
+        let carbohydratesAmount;
+        for (let i = 0; i < nutObj.length; i++) {
+          if (nutObj[i].attr_id === 269) {
+            sugarAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 204) {
+            fatAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 208) {
+            calorieAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 203) {
+            proteinAmount = Math.round(nutObj[i].value);
+          } else if (nutObj[i].attr_id === 205) {
+            carbohydratesAmount = Math.round(nutObj[i].value);
           }
         }
-			},
-		}).then((response) => {
-			console.log(response);
-			console.log("initial request");
 
-			const nutObj = response.data.common[0].full_nutrients;
-			let sugarAmount;
-			let fatAmount;
-			let calorieAmount;
-			let proteinAmount;
-			let carbohydratesAmount;
-			for (let i = 0; i < nutObj.length; i++) {
-				if (nutObj[i].attr_id === 269) {
-					sugarAmount = Math.round(nutObj[i].value);
-				} else if (nutObj[i].attr_id === 204) {
-					fatAmount = Math.round(nutObj[i].value);
-				} else if (nutObj[i].attr_id === 208) {
-					calorieAmount = Math.round(nutObj[i].value);
-				} else if (nutObj[i].attr_id === 203) {
-					proteinAmount = Math.round(nutObj[i].value);
-				} else if (nutObj[i].attr_id === 205) {
-					carbohydratesAmount = Math.round(nutObj[i].value);
-				}
-			}
 
-			if (fatAmount === undefined) {
-				fatAmount = 0;
-			} else if (calorieAmount === undefined) {
-				calorieAmount = 0;
-			} else if (proteinAmount === undefined) {
-				proteinAmount = 0;
-			} else if (carbohydratesAmount === undefined) {
-				carbohydratesAmount = 0;
-			}
+        if (fatAmount === undefined) {
+          fatAmount = 0;
+        } else if (calorieAmount === undefined) {
+          calorieAmount = 0;
+        } else if (proteinAmount === undefined) {
+          proteinAmount = 0;
+        } else if (carbohydratesAmount === undefined) {
+          carbohydratesAmount = 0;
+        }
 
-			const newObj = [
-				fatAmount,
-				calorieAmount,
-				sugarAmount,
-				proteinAmount,
-				carbohydratesAmount,
-			];
-			this.setState({
-				usersFood: newObj,
-				sugarValue: sugarAmount,
-      });
+        const newObj = [
+          fatAmount,
+          calorieAmount,
+          sugarAmount,
+          proteinAmount,
+          carbohydratesAmount,
+        ];
+        
 
-			console.log(this.state.usersFood);
-		});
+        this.setState({
+          usersFood: newObj,
+          sugarValue: sugarAmount,
+          // recommendedFood: recoObj,
+          // recoFoodTitle: title,
+        });
+        console.log(this.state.usersFood);
+      })
+  }
 
-}
 
   handleChange = (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    let userInput = this.state.userInput;
-    let value = event.target.value;
+  let userInput = this.state.userInput;
+  let value = event.target.value;
 
-    userInput = value;
+  userInput = value;
 
-    this.setState({
-      userInput: userInput,
-      checkUserChoice: false,
-    });
-    console.log(this.state.checkUserChoice);
+  this.setState({
+    userInput: userInput,
+    checkUserChoice: false,
+  });
+  console.log(this.state.checkUserChoice);
   };
 
   handleBreakfastClick = () => {
@@ -212,6 +219,7 @@ nutritionixCall = (query, sugar) => {
       // });
 
       this.nutritionixCall(this.state.userInput, 10000)
+		
 
       // axios({
       //   url: "https://trackapi.nutritionix.com/v2/search/instant",
