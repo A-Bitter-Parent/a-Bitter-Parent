@@ -139,15 +139,15 @@ class ApiCalls extends Component {
         let carbohydratesAmount;
         for (let i = 0; i < nutObj.length; i++) {
           if (nutObj[i].attr_id === 269) {
-            sugarAmount = nutObj[i].value;
+            sugarAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 204) {
-            fatAmount = nutObj[i].value;
+            fatAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 208) {
-            calorieAmount = nutObj[i].value;
+            calorieAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 203) {
-            proteinAmount = nutObj[i].value;
+            proteinAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 205) {
-            carbohydratesAmount = nutObj[i].value;
+            carbohydratesAmount = Math.round(nutObj[i].value);
           }
         }
 
@@ -201,11 +201,9 @@ class ApiCalls extends Component {
     console.log(this.state.checkReco);
 
     let randItem = 1;
-
     let noOfRes;
-    // console.log(noOfRes)
-    if ((noOfRes = 20)) {
-      randItem = Math.floor(Math.random() * 20);
+    if (noOfRes = 20) {
+      randItem = (Math.floor(Math.random() * 20))
     } else {
       randItem = Math.floor(Math.random() * noOfRes);
     }
@@ -237,7 +235,6 @@ class ApiCalls extends Component {
         console.log("if first call is more than 10");
 
         const nutObj = response.data.common[randItem].full_nutrients;
-        // console.log(nutObj)
 
         let sugarAmount;
         let fatAmount;
@@ -246,17 +243,19 @@ class ApiCalls extends Component {
         let carbohydratesAmount;
         for (let i = 0; i < nutObj.length; i++) {
           if (nutObj[i].attr_id === 269) {
-            sugarAmount = nutObj[i].value;
+            sugarAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 204) {
-            fatAmount = nutObj[i].value;
+            fatAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 208) {
-            calorieAmount = nutObj[i].value;
+            calorieAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 203) {
-            proteinAmount = nutObj[i].value;
+            proteinAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 205) {
-            carbohydratesAmount = nutObj[i].value;
+            carbohydratesAmount = Math.round(nutObj[i].value);
           }
         }
+
+        
 
         if (fatAmount === undefined) {
           fatAmount = 0;
@@ -339,15 +338,15 @@ class ApiCalls extends Component {
         let carbohydratesAmount;
         for (let i = 0; i < nutObj.length; i++) {
           if (nutObj[i].attr_id === 269) {
-            sugarAmount = nutObj[i].value;
+            sugarAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 204) {
-            fatAmount = nutObj[i].value;
+            fatAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 208) {
-            calorieAmount = nutObj[i].value;
+            calorieAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 203) {
-            proteinAmount = nutObj[i].value;
+            proteinAmount = Math.round(nutObj[i].value);
           } else if (nutObj[i].attr_id === 205) {
-            carbohydratesAmount = nutObj[i].value;
+            carbohydratesAmount = Math.round(nutObj[i].value);
           }
         }
 
@@ -375,19 +374,16 @@ class ApiCalls extends Component {
           recoFoodTitle: response.data.common[randItem].food_name,
         });
 
+      axios({
+        url: 'https://api.unsplash.com/photos/random',
+        method: "GET",
+        responseType: "JSON",
+        params: {
+          client_id: this.state.unsplashKey,
+          query: `${this.state.recoFoodTitle} plate`,
+        },
+      }).then((response) => {
         console.log(this.state.recoFoodTitle);
-
-        axios({
-          url: "https://api.unsplash.com/photos/random",
-          method: "GET",
-          responseType: "JSON",
-          params: {
-            client_id: this.state.unsplashKey,
-            query: `${this.state.recoFoodTitle} plate`,
-          },
-        }).then((response) => {
-
-          console.log(response);
           
           let unsplashUrl = response.data.urls.small;
           let altTag = response.data.alt_description;
@@ -404,7 +400,7 @@ class ApiCalls extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <UserInput
           results={this.state}
           handleChange={this.handleChange}
@@ -415,9 +411,7 @@ class ApiCalls extends Component {
           handleSnackClick={this.handleSnackClick}
           handleSave={this.handleSave}
         />
-        {this.state.checkReco ? (
-          <button onClick={this.handleSave}>Save selection</button>
-        ) : null}
+        {this.state.checkReco ? <button className="saveBtn" onClick={this.handleSave}>Save selection</button> : null}
         {this.state.checkReco ? <DisplaySavedFoods /> : null}
       </div>
     );

@@ -8,17 +8,17 @@ class Breakfast extends Component {
         <form className="foodSelector">
           <label htmlFor="foodMenu">Select what you would Like</label>
           <select id="foodMenu" onChange={this.props.handleChange}>
-            <option disabled defaultValue>
+            <option selected defaultValue>
               Choose your food
             </option>
-            <option value="waffles">Waffles</option>
-            <option value="pancakes">Pancakes</option>
+            <option value="Oreos">Oreos</option>
+            <option value="eggos">Eggos</option>
             <option value="cereal">Cereal</option>
             <option value="breakfast sandwich">Breakfast Sandwich</option>
             <option value="yogurt">Yogurt</option>
-            <option value="fruit salad">Fruit Salad</option>
+            <option value="Muffin">Muffin</option>
             <option value="eggs and bacon">Eggs and Bacon</option>
-            <option value="english muffin">English Muffin</option>
+            <option value="Banana Bread">Banana Bread</option>
             <option value="sausage">Sausage</option>
             <option value="cake">Cake</option>
           </select>

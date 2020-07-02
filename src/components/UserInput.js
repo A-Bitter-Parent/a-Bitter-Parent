@@ -6,21 +6,17 @@ import Snack from './Snack';
 // import UserResults from "./UserResults";
 
 class UserInput extends Component {
-  // this.handleClick = this.handleClick.bind(this);
-  // this.handleUserClick = this.handleUserClick.bind(this);
 
   render() {
     return (
       <div className="userInput">
-        {/* <button onClick={this.props.handleBreakfastClick} onChange={this.props.handleChange}>Breakfast</button>
-        <button onClick={this.props.handleLunchClick} onChange={this.props.handleChange}>Lunch</button>
-        <button onClick={this.props.handleDinnerClick} onChange={this.props.handleChange}>Dinner</button>
-        <button onClick={this.props.handleSnackClick} onChange={this.props.handleChange}>Snack</button> */}
 
-        <button onClick={this.props.handleBreakfastClick}>Breakfast</button>
-        <button onClick={this.props.handleLunchClick}>Lunch</button>
-        <button onClick={this.props.handleDinnerClick}>Dinner</button>
-        <button onClick={this.props.handleSnackClick}>Snack</button>
+        <div className="userOptions">
+          <button onClick={this.props.handleBreakfastClick}>Breakfast</button>
+          <button onClick={this.props.handleLunchClick}>Lunch</button>
+          <button onClick={this.props.handleDinnerClick}>Dinner</button>
+          <button onClick={this.props.handleSnackClick}>Snack</button>
+        </div>
 
 
         {this.props.results.breakfast ?
