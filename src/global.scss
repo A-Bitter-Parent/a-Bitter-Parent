@@ -1,13 +1,12 @@
 body {
 	background-image: url('./assets/01d35212.png');
-	// opacity: 0.5;
+	background-attachment: fixed;
 }
 
 .userResults, .food {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	// justify-content: center;
 }
 
 
@@ -21,7 +20,6 @@ body {
 
 .userSuggestion {
 	height: max-content;
-	
 }
 
 ul, li {
@@ -58,10 +56,9 @@ form {
 
 
 select {
-width: 30vw;
-text-align: center;
-  padding: 1%;
-
+	width: 30vw;
+	text-align: center;
+	padding: 1%;
 }
 
 
@@ -109,12 +106,10 @@ justify-content: space-around;
 
 .image {
 	width: 30vw;
-	// height: 30vw;
 	overflow: hidden;
 	
 	img {
 		object-fit: cover;
-
 	}
 }
 

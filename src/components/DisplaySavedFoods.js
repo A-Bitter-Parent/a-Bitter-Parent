@@ -24,14 +24,12 @@ class DisplaySavedFoods extends Component {
           this.setState({
             foods: newState,
         });
-        console.log(this.state.foods);
         });
     }
 
     deleteActivity = (key) => {
         const dbRef = firebase.database().ref();
         dbRef.child(key).remove();
-        console.log("delete pushed");
     };
 
     render() {
