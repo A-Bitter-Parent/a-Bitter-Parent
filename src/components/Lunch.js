@@ -15,7 +15,7 @@ class Lunch extends Component {
             <option value="jelly sandwich">Jelly Sandwich</option>
             <option value="baconator">Baconator</option>
             <option value="thai noodles">Thai Noodles</option>
-            <option value="vanilla ice cream">Caesar Salad</option>
+            <option value="Caesar Salad">Caesar Salad</option>
             <option value="apple dumplings">Apple Dumplings</option>
             <option value="grilled peach">Grilled Peaches</option>
             <option value="mochi">Mochi</option>

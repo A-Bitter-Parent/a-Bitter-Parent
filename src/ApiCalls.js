@@ -24,8 +24,8 @@ class ApiCalls extends Component {
       recoImage: "",
       recoImageAlt: "",
       firebaseObj: {},
-      unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
-      // unsplashKey: 'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+      // unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+      unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
     };
   }
   unsplashCall = (query) => {
@@ -35,12 +35,14 @@ class ApiCalls extends Component {
 			responseType: "JSON",
 			params: {
 				client_id: this.state.unsplashKey,
-				query:`${query}`,
-			},
+        query:`${query}`,
+        orientation: "squarish"
+        // collections: 386111,
+    },
 		}).then((response) => {
 			console.log(response);
 
-			let unsplashUrl = response.data.urls.small;
+			let unsplashUrl = response.data.urls.regular;
 			let altTag = response.data.alt_description;
 
 			this.setState({
@@ -509,9 +511,14 @@ nutritionixCall = (query, sugar) => {
         params: {
           client_id: this.state.unsplashKey,
           query: `${this.state.recoFoodTitle}`,
+          orientation: "squarish"
+          // collections: 386111,
+
         },
       }).then((response) => {
         console.log(this.state.recoFoodTitle);
+        console.log(response);
+        
           let unsplashUrl = response.data.urls.small;
           let altTag = response.data.alt_description;
 
