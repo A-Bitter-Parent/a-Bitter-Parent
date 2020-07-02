@@ -318,7 +318,7 @@ nutritionixCall = (query, sugar) => {
     //   randItem = Math.floor(Math.random() * noOfRes);
     // }
 
-    const isWild = (Math.floor(Math.random() * 2));
+    const isWild = (Math.floor(Math.random() * 10));
     if (isWild === 0) {
       this.setState({
         sugarAllowed : this.state.sugarValue - 5,
@@ -356,7 +356,7 @@ nutritionixCall = (query, sugar) => {
 
         console.log("if first call is more than 10");    
         
-        let randItem = 1;
+        let randItem;
         let noOfRes = this.state.recommendedFood.length;
         if ((noOfRes = 20)) {
         randItem = Math.floor(Math.random() * 20);
@@ -365,7 +365,7 @@ nutritionixCall = (query, sugar) => {
         }
 
 
-        const nutObj = response.data.common[0].full_nutrients;
+        const nutObj = response.data.common[randItem].full_nutrients;
 
         let sugarAmount;
         let fatAmount;
@@ -407,7 +407,7 @@ nutritionixCall = (query, sugar) => {
         ];
         this.setState({
           recommendedFood: newObj,
-          recoFoodTitle: response.data.common[0].food_name,
+          recoFoodTitle: response.data.common[randItem].food_name,
         });
         console.log(this.state.recommendedFood);
         console.log(this.state.recoFoodTitle)
