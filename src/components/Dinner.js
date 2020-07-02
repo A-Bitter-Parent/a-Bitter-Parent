@@ -8,18 +8,18 @@ class Dinner extends Component {
         <form className="foodSelector">
           <label htmlFor="foodMenu">Select what you would Like</label>
           <select id="foodMenu" onChange={this.props.handleChange}>
-            <option disabled defaultValue >
+          <option selected disabled defaultValue>
               Choose your food
             </option>
-            <option value="steak">steak</option>
-            <option value="BLT">BLT</option>
-            <option value="cheeseburger">Cheeseburger</option>
-            <option value="Ramen">Ramen</option>
-            <option value="caesar salad">Caesar Salad</option>
-            <option value="dumplings">Dumplings</option>
-            <option value="grilled cheese">Grilled Cheese</option>
-            <option value="california roll">California Roll</option>
-            <option value="tacos">tacos</option>
+            <option value="bbq ribs">BBQ Ribs</option>
+            <option value="walnut shrimp">Walnut Shrimp</option>
+            <option value="sesame chicken">Sesame Chicken</option>
+            <option value="vermicelli noodles with pork">Vermicelli Noodles with Pork</option>
+            <option value="jelly donuts">Jelly Donuts</option>
+            <option value="cinnamon bun">Cinnamon Buns</option>
+            <option value="fried apple pie">Fried Apple Pie</option>
+            <option value="pulled pork">Pulled Pork</option>
+            <option value="banana split">Banana Split</option>
             <option value="cake">Cake</option>
           </select>
         </form>
