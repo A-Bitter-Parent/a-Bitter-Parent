@@ -35,7 +35,7 @@ class ApiCalls extends Component {
 			responseType: "JSON",
 			params: {
 				client_id: this.state.unsplashKey,
-				query:`${query} plate`,
+				query:`${query}`,
 			},
 		}).then((response) => {
 			console.log(response);
@@ -297,13 +297,13 @@ nutritionixCall = (query, sugar) => {
     console.log(this.state.checkReco);
 
 
-    let randItem = 1;
-    let noOfRes;
-    if (noOfRes = 20) {
-      randItem = (Math.floor(Math.random() * 20))
-    } else {
-      randItem = Math.floor(Math.random() * noOfRes);
-    }
+    // let randItem = 1;
+    // let noOfRes;
+    // if (noOfRes = 20) {
+    //   randItem = (Math.floor(Math.random() * 20))
+    // } else {
+    //   randItem = Math.floor(Math.random() * noOfRes);
+    // }
 
 
 
@@ -389,6 +389,8 @@ nutritionixCall = (query, sugar) => {
           recoFoodTitle: response.data.common[randItem].food_name,
         });
         console.log(this.state.recommendedFood);
+        console.log(this.state.recoFoodTitle)
+        
 
         noOfRes = this.state.recommendedFood.length;
         console.log(noOfRes);
@@ -506,13 +508,10 @@ nutritionixCall = (query, sugar) => {
         responseType: "JSON",
         params: {
           client_id: this.state.unsplashKey,
-
-          query: `${this.state.recoFoodTitle} plate`,
-
+          query: `${this.state.recoFoodTitle}`,
         },
       }).then((response) => {
         console.log(this.state.recoFoodTitle);
-          
           let unsplashUrl = response.data.urls.small;
           let altTag = response.data.alt_description;
 
