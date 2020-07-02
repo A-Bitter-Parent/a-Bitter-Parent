@@ -349,11 +349,7 @@ nutritionixCall = (query, sugar) => {
         
         let randItem;
         let noOfRes = this.state.recommendedFood.length;
-        if ((noOfRes = 20)) {
-        randItem = Math.floor(Math.random() * 20);
-        } else {
         randItem = Math.floor(Math.random() * noOfRes);
-        }
 
 
         const nutObj = response.data.common[randItem].full_nutrients;
