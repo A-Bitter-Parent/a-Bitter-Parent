@@ -37,12 +37,13 @@ class DisplaySavedFoods extends Component {
     render() {
         return (
             <div className="showFoodPairs">
+                <h3>Your Suggestions:</h3>
                 {this.state.foods.map(({ key, food }) => {
                     return (
                         <Fragment>
                             <div key={key} 
                             className="food">
-                                <ul>
+                                <ul className="savedFood text">
                                     <li><h2>
                                         {food.food1.userFoodName}
                                     </h2></li>
@@ -57,7 +58,7 @@ class DisplaySavedFoods extends Component {
                                     </li>
                                 </ul>
 
-                                <ul>
+                                <ul className="savedFood text">
                                     <li><h2>
                                         {food.food2.userRecoName}
                                     </h2></li>

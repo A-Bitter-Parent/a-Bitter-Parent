@@ -1,16 +1,27 @@
+body {
+	background-image: url('./assets/01d35212.png');
+	// opacity: 0.5;
+}
+
 .userResults, .food {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	justify-content: center;
+	// justify-content: center;
 }
+
 
 .userSelection, .userSuggestion {
 	width: 40%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	margin: 0 auto;
+}
+
+.userSuggestion {
+	height: max-content;
+	
 }
 
 ul, li {
@@ -25,9 +36,15 @@ button {
 	margin: 5px;
 	border: none;
 	padding: 10px;
-	background-color: #8DF8B7;
+	background-color: #FFB454;
 	border-radius: 10px;
 	width: 45%;
+	border: 1px solid transparent;
+
+	&:hover, &:focus-within {
+		border: 1px solid black;
+		cursor: pointer;
+	}
 }
 
 form {
@@ -35,11 +52,18 @@ form {
 	width: 70%;
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
-option {
-	// background-color: #AEBDFF;
+
+select {
+width: 30vw;
+text-align: center;
+  padding: 1%;
+
 }
+
 
 
 .wrapper {
@@ -74,18 +98,26 @@ justify-content: space-around;
 }
 
 .food {
-	ul {
-		width: 40%;
-	}
+	display: flex;
+	justify-content: space-between;
+}
+
+.savedFood{
+	width: 40%;
+	margin: 0 auto; 
 }
 
 .image {
-	width: 30vh;
-	height: 30vh;
+	width: 30vw;
+	// height: 30vw;
 	overflow: hidden;
 	
 	img {
 		object-fit: cover;
 
 	}
+}
+
+.showFoodPairs {
+	border: 1px solid black;
 }
