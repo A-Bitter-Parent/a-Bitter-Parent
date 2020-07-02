@@ -328,8 +328,6 @@ nutritionixCall = (query, sugar) => {
         sugarAllowed : this.state.sugarValue - 10,
       })
       }
-      console.log(this.state.sugarAllowed);
-
 
       // this.nutritionixCall("vegetables || fruits || grains", this.state.sugarValue - 10);
       axios({
