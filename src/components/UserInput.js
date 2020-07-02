@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Breakfast from './Breakfast';
 import Lunch from './Lunch';
 import Dinner from './Dinner';
@@ -9,15 +9,13 @@ class UserInput extends Component {
 
   render() {
     return (
-      <div className="userInput">
-
+      <Fragment>
         <div className="userOptions">
           <button onClick={this.props.handleBreakfastClick}>Breakfast</button>
           <button onClick={this.props.handleLunchClick}>Lunch</button>
           <button onClick={this.props.handleDinnerClick}>Dinner</button>
           <button onClick={this.props.handleSnackClick}>Snack</button>
         </div>
-
 
         {this.props.results.breakfast ?
           <Breakfast
@@ -50,9 +48,7 @@ class UserInput extends Component {
             subClick={this.props.subClick}
           />
           : null}
-      </div>
-
-      //fats(204), carbs(205), proteins(203), sugars(269), image(photo.thumb), calories(208)
+      </Fragment>
     );
   }
 }

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import UserResults from "./UserResults";
 
 class Snack extends Component {
   render() {
     return (
-      <div className="snack">
-        <form className="foodSelector">
+      <Fragment>
+        <form>
           <label htmlFor="foodMenu">Select what you would Like</label>
           <select id="foodMenu" onChange={this.props.handleChange}>
           <option selected disabled value>
@@ -27,7 +27,7 @@ class Snack extends Component {
           results={this.props.results}
           subClick={this.props.subClick}
         />
-      </div>
+      </Fragment>
     );
   }
 }

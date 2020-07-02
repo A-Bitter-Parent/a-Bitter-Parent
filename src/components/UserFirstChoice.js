@@ -18,7 +18,6 @@ class UserFirstChoice extends Component {
 						</ul>
 					</div>
 			</Fragment>
-
 		)
 	}
 }

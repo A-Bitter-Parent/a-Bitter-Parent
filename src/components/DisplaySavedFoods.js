@@ -78,7 +78,6 @@ class DisplaySavedFoods extends Component {
                         </Fragment>
                     );
                 })}
-
             </div>
         )
     }
