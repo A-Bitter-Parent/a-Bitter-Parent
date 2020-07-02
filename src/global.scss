@@ -1,4 +1,4 @@
-.userResults {
+.userResults, .food {
 	display: flex;
 	justify-content: space-between;
 }
@@ -42,8 +42,13 @@ option {
 	margin: 0 auto;
 }
 
+.button {
+	text-align: center;
+	margin: 10px 0;
+}
+
 .subBtn {
-	width: 100%;
+	width: 40%;
 	margin: 0 auto;
 }
 
@@ -59,5 +64,12 @@ justify-content: space-around;
 	button {
 		width: 45%;
 		margin: 10px 0;
+	}
+}
+
+.food {
+
+	ul {
+		width: 40%;
 	}
 }

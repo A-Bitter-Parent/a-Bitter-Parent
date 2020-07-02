@@ -24,6 +24,9 @@ class ApiCalls extends Component {
       recoImage: "",
       recoImageAlt: "",
       firebaseObj: {},
+      // unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+      unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+
     };
   }
 
@@ -92,14 +95,12 @@ class ApiCalls extends Component {
       });
 
 
-      const mikesUnsplashKey = 'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA';
-      const thusasUnsplashKey = 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts';
       axios({
         url: 'https://api.unsplash.com/photos/random',
         method: "GET",
         responseType: "JSON",
         params: {
-          client_id: thusasUnsplashKey,
+          client_id: this.state.unsplashKey,
           query: this.state.userInput,
           orientation: "landscape",
         },
@@ -203,13 +204,6 @@ class ApiCalls extends Component {
     });
     console.log(this.state.checkReco);
 
-    let randItem = 1;
-    let noOfRes;
-    if (noOfRes = 20) {
-      randItem = (Math.floor(Math.random() * 20))
-    } else {
-      randItem = (Math.floor(Math.random() * noOfRes))
-    }
 
     if (this.state.sugarValue >= 10) {
       axios({
@@ -235,7 +229,15 @@ class ApiCalls extends Component {
         console.log(this.state.sugarValue);
         console.log(response.data.common.length)
 
-        console.log("if first call is more than 10");      
+        console.log("if first call is more than 10");    
+        
+        let randItem = 1;
+        let noOfRes = this.state.recommendedFood.length;
+        if ((noOfRes = 20)) {
+        randItem = Math.floor(Math.random() * 20);
+        } else {
+        randItem = Math.floor(Math.random() * noOfRes);
+        }
 
         const nutObj = response.data.common[randItem].full_nutrients;
 
@@ -292,7 +294,7 @@ class ApiCalls extends Component {
         method: "GET",
         responseType: "JSON",
         params: {
-          client_id: thusasUnsplashKey,
+          client_id: this.state.unsplashKey,
           query: `${this.state.recoFoodTitle} food`,
           orientation: "landscape",
         },
@@ -329,12 +331,21 @@ class ApiCalls extends Component {
           },
         },
       }).then((response) => {
-        console.log(response.data.common[randItem]);
+        // console.log(response.data.common[randItem]);
         console.log("if first call is less than 10 but greater than 0");
+
+        let randItem = 1;
+        let noOfRes = this.state.recommendedFood.length;
+        if ((noOfRes = 20)) {
+          randItem = Math.floor(Math.random() * 20);
+        } else {
+          randItem = Math.floor(Math.random() * noOfRes);
+        }
 
         if (response.data.common[randItem] === undefined) {
           alert("Go ahead! Eat it!");
         }
+
         const nutObj = response.data.common[randItem].full_nutrients;
         let sugarAmount;
         let fatAmount;
@@ -386,7 +397,7 @@ class ApiCalls extends Component {
         method: "GET",
         responseType: "JSON",
         params: {
-          client_id: thusasUnsplashKey,
+          client_id: this.state.unsplashKey,
           query: `${this.state.recoFoodTitle} food`,
           orientation: "landscape",
         },
@@ -408,21 +419,30 @@ class ApiCalls extends Component {
   };
   render() {
     return (
-      <div className="wrapper">
-        <UserInput
-          results={this.state}
-          handleChange={this.handleChange}
-          subClick={this.subClick}
-          handleBreakfastClick={this.handleBreakfastClick}
-          handleLunchClick={this.handleLunchClick}
-          handleDinnerClick={this.handleDinnerClick}
-          handleSnackClick={this.handleSnackClick}
-          handleSave={this.handleSave}
-        />
-        {this.state.checkReco ? <button className="saveBtn" onClick={this.handleSave}>Save selection</button> : null}
-        {this.state.checkReco ? <DisplaySavedFoods /> : null}
-      </div>
-    );
+			<div className="wrapper">
+
+
+				<UserInput
+					results={this.state}
+					handleChange={this.handleChange}
+					subClick={this.subClick}
+					handleBreakfastClick={this.handleBreakfastClick}
+					handleLunchClick={this.handleLunchClick}
+					handleDinnerClick={this.handleDinnerClick}
+					handleSnackClick={this.handleSnackClick}
+					handleSave={this.handleSave}
+				/>
+
+				{this.state.checkReco ? (
+					<div className="button">
+            <button className="saveBtn" onClick={this.handleSave}>
+              Save selection
+            </button>
+          </div>
+				) : null}
+				{this.state.checkReco ? <DisplaySavedFoods /> : null}
+			</div>
+		);
   }
 }
 
