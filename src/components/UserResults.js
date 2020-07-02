@@ -5,7 +5,7 @@ import UserFirstChoice from './UserFirstChoice'
 class UserResults extends Component {
 	render() {
 		return (
-			<div className="UserResults">
+			<div className="userResults">
 				<div className="userSelection">
 					{this.props.results.checkUserChoice ? <UserFirstChoice results={this.props.results} subClick={this.props.subClick}/> : null}
 					</div>

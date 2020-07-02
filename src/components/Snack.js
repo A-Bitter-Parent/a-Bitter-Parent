@@ -8,10 +8,10 @@ class Snack extends Component {
         <form className="foodSelector">
           <label htmlFor="foodMenu">Select what you would Like</label>
           <select id="foodMenu" onChange={this.props.handleChange}>
-            <option disabled defaultValue>
+            <option selected defaultValue>
               Choose your food
             </option>
-            <option value="chicken sandwich">Chicken Sandwich</option>
+            <option value="Cheesecake">Cheesecake</option>
             <option value="BLT">BLT</option>
             <option value="cheeseburger">Cheeseburger</option>
             <option value="Ramen">Ramen</option>
