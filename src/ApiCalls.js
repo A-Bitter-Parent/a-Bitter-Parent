@@ -26,6 +26,7 @@ class ApiCalls extends Component {
       firebaseObj: {},
       // unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
       unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+      sugarAllowed: 0,
     };
   }
   unsplashCall = (query) => {
@@ -116,7 +117,19 @@ nutritionixCall = (query, sugar) => {
 			this.setState({
 				usersFood: newObj,
 				sugarValue: sugarAmount,
-			});
+      });
+      
+      const isWild = (Math.floor(Math.random() * 10));
+      if (isWild === 0) {
+        this.setState({
+          sugarAllowed : this.state.sugarValue - 5,
+        })
+      } else {
+        this.setState({
+          sugarAllowed : this.state.sugarValue - 10,
+        })
+        }
+
 			console.log(this.state.usersFood);
 		});
 
@@ -307,8 +320,16 @@ nutritionixCall = (query, sugar) => {
     //   randItem = Math.floor(Math.random() * noOfRes);
     // }
 
-
-
+    const isWild = (Math.floor(Math.random() * 2));
+    if (isWild === 0) {
+      this.setState({
+        sugarAllowed : this.state.sugarValue - 5,
+      })
+    } else {
+      this.setState({
+        sugarAllowed : this.state.sugarValue - 10,
+      })
+      }
 
       // this.nutritionixCall("vegetables || fruits || grains", this.state.sugarValue - 10);
       axios({
@@ -346,7 +367,7 @@ nutritionixCall = (query, sugar) => {
         }
 
 
-        const nutObj = response.data.common[randItem].full_nutrients;
+        const nutObj = response.data.common[0].full_nutrients;
 
         let sugarAmount;
         let fatAmount;
@@ -388,14 +409,14 @@ nutritionixCall = (query, sugar) => {
         ];
         this.setState({
           recommendedFood: newObj,
-          recoFoodTitle: response.data.common[randItem].food_name,
+          recoFoodTitle: response.data.common[0].food_name,
         });
         console.log(this.state.recommendedFood);
         console.log(this.state.recoFoodTitle)
         
 
-        noOfRes = this.state.recommendedFood.length;
-        console.log(noOfRes);
+        // noOfRes = this.state.recommendedFood.length;
+        // console.log(noOfRes);
       });
 
       // axios({
