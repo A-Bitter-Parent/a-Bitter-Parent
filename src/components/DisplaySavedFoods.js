@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import firebase from '../firebase'
 
 class DisplaySavedFoods extends Component {
@@ -39,36 +39,40 @@ class DisplaySavedFoods extends Component {
             <div className="showFoodPairs">
                 {this.state.foods.map(({ key, food }) => {
                     return (
-                        <div>
-                            <ul key={key} 
+                        <Fragment>
+                            <div key={key} 
                             className="food">
-                                <li>{food.food1.userFoodName}</li>
-                                <li>
-                                    <ul>
-                                        <li>Fat Amount: {food.food1.userFoodOption[0]}</li>
-                                        <li>Calories: {food.food1.userFoodOption[1]}</li>
-                                        <li>Sugar: {food.food1.userFoodOption[2]}</li>
-                                        <li>Protein: {food.food1.userFoodOption[3]}</li>
-                                        <li>Carbohydrates: {food.food1.userFoodOption[4]}</li>
-                                    </ul>
-                                </li>
+                                <ul>
+                                    <li>{food.food1.userFoodName}</li>
+                                    <li>
+                                        <ul>
+                                            <li>Fat Amount: {food.food1.userFoodOption[0]}</li>
+                                            <li>Calories: {food.food1.userFoodOption[1]}</li>
+                                            <li>Sugar: {food.food1.userFoodOption[2]}</li>
+                                            <li>Protein: {food.food1.userFoodOption[3]}</li>
+                                            <li>Carbohydrates: {food.food1.userFoodOption[4]}</li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-                                <li>{food.food2.userRecoName}</li>
-                                <li>
-                                    <ul>
-                                        <li>Fat Amount: {food.food2.userRecoOption[0]}</li>
-                                        <li>Calories: {food.food2.userRecoOption[1]}</li>
-                                        <li>Sugar: {food.food2.userRecoOption[2]}</li>
-                                        <li>Protein: {food.food2.userRecoOption[3]}</li>
-                                        <li>Carbohydrates: {food.food2.userRecoOption[4]}</li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                <ul>
+                                    <li>{food.food2.userRecoName}</li>
+                                    <li>
+                                        <ul>
+                                            <li>Fat Amount: {food.food2.userRecoOption[0]}</li>
+                                            <li>Calories: {food.food2.userRecoOption[1]}</li>
+                                            <li>Sugar: {food.food2.userRecoOption[2]}</li>
+                                            <li>Protein: {food.food2.userRecoOption[3]}</li>
+                                            <li>Carbohydrates: {food.food2.userRecoOption[4]}</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
 
                             <button onClick={() => {
                                 this.deleteActivity(key);
                                 }}>Delete</button>
-                        </div>
+                        </Fragment>
                     );
                 })}
 
