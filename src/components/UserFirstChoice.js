@@ -4,7 +4,6 @@ class UserFirstChoice extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div>
 					<div className="image">
 						<img src={this.props.results.userImage} alt={this.props.results.userImageAlt} />
 					</div>
@@ -18,9 +17,6 @@ class UserFirstChoice extends Component {
 							<li><span>Carbohydrates:</span> {this.props.results.usersFood[4]}g</li>
 						</ul>
 					</div>
-				</div>
-
-
 			</Fragment>
 
 		)

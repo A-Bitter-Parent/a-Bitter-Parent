@@ -8,25 +8,25 @@ class ApiCalls extends Component {
   constructor() {
     super();
     this.state = {
-      userInput: "",
-      recoFoodTitle: "",
-      sugarValue: "",
-      usersFood: [],
-      recommendedFood: [],
-      checkReco: false,
-      checkUserChoice: false,
-      breakfast: false,
-      lunch: false,
-      dinner: false,
-      snack: false,
-      userImage: "",
-      userImageAlt: "",
-      recoImage: "",
-      recoImageAlt: "",
-      firebaseObj: {},
-      unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
-      // unsplashKey: 'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
-    };
+			userInput: "",
+			recoFoodTitle: "",
+			sugarValue: "",
+			usersFood: [],
+			recommendedFood: [],
+			checkReco: false,
+			checkUserChoice: false,
+			breakfast: false,
+			lunch: false,
+			dinner: false,
+			snack: false,
+			userImage: "",
+			userImageAlt: "",
+			recoImage: "",
+			recoImageAlt: "",
+			firebaseObj: {},
+			// unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+			unsplashKey: "wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts",
+		};
   }
   unsplashCall = (query) => {
       axios({
