@@ -118,17 +118,6 @@ nutritionixCall = (query, sugar) => {
 				usersFood: newObj,
 				sugarValue: sugarAmount,
       });
-      
-      const isWild = (Math.floor(Math.random() * 10));
-      if (isWild === 0) {
-        this.setState({
-          sugarAllowed : this.state.sugarValue - 5,
-        })
-      } else {
-        this.setState({
-          sugarAllowed : this.state.sugarValue - 10,
-        })
-        }
 
 			console.log(this.state.usersFood);
 		});
@@ -347,7 +336,7 @@ nutritionixCall = (query, sugar) => {
           detailed: true,
           full_nutrients: {
             "269": {
-              lte: this.state.sugarValue - 10,
+              lte: this.state.sugarAllowed,
             },
           },
         },
