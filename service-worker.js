@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/a-Bitter-Parent/precache-manifest.01b656814aa95c44f53bbfa2835cbf51.js"
+  "/a-Bitter-Parent/precache-manifest.2f3c8c358b613c155a5d54f5e64ff734.js"
 );
 
 self.addEventListener('message', (event) => {
