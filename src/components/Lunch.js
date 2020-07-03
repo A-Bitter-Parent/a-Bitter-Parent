@@ -8,7 +8,7 @@ class Lunch extends Component {
         <form className="foodSelector">
           <label htmlFor="foodMenu">Select what you would Like</label>
           <select id="foodMenu" onChange={this.props.handleChange}>
-          <option selected disabled value>
+          <option selected disabled>
               Choose your food
             </option>
             <option value="teriyaki steak">Teriyaki Steak</option>
