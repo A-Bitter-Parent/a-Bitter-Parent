@@ -33,9 +33,9 @@ class UserSuggestion extends Component {
             </li>
           </ul>
         </div>
-				<div className="sugarCounter">
+				{/* <div className="sugarCounter">
 					<h4>The recommended item has <br/><span>{this.props.results.sugarDiff}g</span><br/>less sugar</h4>
-        </div>
+        </div> */}
       </div>
     );
   }

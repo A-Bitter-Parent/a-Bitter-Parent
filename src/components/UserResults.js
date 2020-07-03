@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, { Component, Fragment } from 'react'
 import UserSuggestion from './UserSuggestion'
 import UserFirstChoice from './UserFirstChoice'
 
@@ -7,14 +7,21 @@ class UserResults extends Component {
 		return (
 			<Fragment>
 				{this.props.results.checkUserChoice ? (
-				<div className="button">
-					<button className="subBtn" onClick={this.props.subClick}>
-					Give me a substitute
+					<div className="button">
+						<button className="subBtn" onClick={this.props.subClick}>
+							Give me a substitute
 					</button>
+					</div>
+				) : null}
+
+				{this.props.results.checkReco ? (
+				<div className="sugarCounter">
+					<h4>{this.props.results.recoFoodTitle} has <span>{this.props.results.sugarDiff}g</span> less sugar</h4>
 				</div>
 				) : null}
+
 				<div className="userResults">
-	
+
 					<div className="userSelection">
 						{this.props.results.checkUserChoice ? (
 							<UserFirstChoice
@@ -23,7 +30,7 @@ class UserResults extends Component {
 							/>
 						) : null}
 					</div>
-	
+
 					{this.props.results.checkReco ? (
 						<UserSuggestion
 							handleSave={this.props.handleSave}
@@ -31,7 +38,7 @@ class UserResults extends Component {
 						/>
 					) : null}
 				</div>
-				</Fragment>
+			</Fragment>
 		);
 	}
 }
