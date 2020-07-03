@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9a228dcee44c15f316a6c83cff587036",
+    "revision": "2371e5119f7465dc09d1cb88d89bad2c",
     "url": "/a-Bitter-Parent/index.html"
   },
   {
-    "revision": "3110d02d6d670fc2b968",
-    "url": "/a-Bitter-Parent/static/css/main.02891d96.chunk.css"
+    "revision": "485cffc27eab1b1766fb",
+    "url": "/a-Bitter-Parent/static/css/main.ad3ab1fe.chunk.css"
   },
   {
     "revision": "cf0e7fb99f6c5b82be18",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/a-Bitter-Parent/static/js/2.f9a3a6bd.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3110d02d6d670fc2b968",
-    "url": "/a-Bitter-Parent/static/js/main.c1b3b422.chunk.js"
+    "revision": "485cffc27eab1b1766fb",
+    "url": "/a-Bitter-Parent/static/js/main.92d8935e.chunk.js"
   },
   {
     "revision": "7ac1d6d98f58825d9cde",
