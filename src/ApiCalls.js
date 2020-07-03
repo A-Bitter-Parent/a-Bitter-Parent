@@ -27,7 +27,7 @@ class ApiCalls extends Component {
       recoImage: "",
       recoImageAlt: "",
       firebaseObj: {},
-      unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+      unsplashKey: "XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA",
       //to swtich between keys when it reaches limit
       // unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
       sugarAllowed: 0,
@@ -43,10 +43,9 @@ class ApiCalls extends Component {
       params: {
         client_id: this.state.unsplashKey,
         query: `${query}`,
-        orientation: "squarish"
+        orientation: "squarish",
       },
     }).then((response) => {
-
       let unsplashUrl = response.data.urls.regular;
       let altTag = response.data.alt_description;
 
@@ -55,7 +54,7 @@ class ApiCalls extends Component {
         userImageAlt: altTag,
       });
     });
-  }
+  };
 
   // function that upon call makes an API request to get information about the food
   nutritionixCall = (query, sugar) => {
@@ -74,74 +73,70 @@ class ApiCalls extends Component {
         detailed: true,
         full_nutrients: {
           "269": {
-            "lte": sugar
-          }
-        }
+            lte: sugar,
+          },
+        },
       },
-    })
-      .then((response) => {
+    }).then((response) => {
+      // variable that contains the response from the API call
+      const nutObj = response.data.common[0].full_nutrients;
+      let sugarAmount;
+      let fatAmount;
+      let calorieAmount;
+      let proteinAmount;
+      let carbohydratesAmount;
 
-        // variable that contains the response from the API call
-        const nutObj = response.data.common[0].full_nutrients;
-        let sugarAmount;
-        let fatAmount;
-        let calorieAmount;
-        let proteinAmount;
-        let carbohydratesAmount;
-
-        // looping through the response to extract the nutrition values
-        for (let i = 0; i < nutObj.length; i++) {
-          if (nutObj[i].attr_id === 269) {
-            sugarAmount = Math.round(nutObj[i].value);
-          } else if (nutObj[i].attr_id === 204) {
-            fatAmount = Math.round(nutObj[i].value);
-          } else if (nutObj[i].attr_id === 208) {
-            calorieAmount = Math.round(nutObj[i].value);
-          } else if (nutObj[i].attr_id === 203) {
-            proteinAmount = Math.round(nutObj[i].value);
-          } else if (nutObj[i].attr_id === 205) {
-            carbohydratesAmount = Math.round(nutObj[i].value);
-          }
+      // looping through the response to extract the nutrition values
+      for (let i = 0; i < nutObj.length; i++) {
+        if (nutObj[i].attr_id === 269) {
+          sugarAmount = Math.round(nutObj[i].value);
+        } else if (nutObj[i].attr_id === 204) {
+          fatAmount = Math.round(nutObj[i].value);
+        } else if (nutObj[i].attr_id === 208) {
+          calorieAmount = Math.round(nutObj[i].value);
+        } else if (nutObj[i].attr_id === 203) {
+          proteinAmount = Math.round(nutObj[i].value);
+        } else if (nutObj[i].attr_id === 205) {
+          carbohydratesAmount = Math.round(nutObj[i].value);
         }
+      }
 
-        // conditional statement to change the value from udefined to 0 for better visual user experience
-        if (fatAmount === undefined) {
-          fatAmount = 0;
-        } else if (calorieAmount === undefined) {
-          calorieAmount = 0;
-        } else if (proteinAmount === undefined) {
-          proteinAmount = 0;
-        } else if (carbohydratesAmount === undefined) {
-          carbohydratesAmount = 0;
-        }
+      // conditional statement to change the value from udefined to 0 for better visual user experience
+      if (fatAmount === undefined) {
+        fatAmount = 0;
+      } else if (calorieAmount === undefined) {
+        calorieAmount = 0;
+      } else if (proteinAmount === undefined) {
+        proteinAmount = 0;
+      } else if (carbohydratesAmount === undefined) {
+        carbohydratesAmount = 0;
+      }
 
-        const newObj = [
-          fatAmount,
-          calorieAmount,
-          sugarAmount,
-          proteinAmount,
-          carbohydratesAmount,
-        ];
+      const newObj = [
+        fatAmount,
+        calorieAmount,
+        sugarAmount,
+        proteinAmount,
+        carbohydratesAmount,
+      ];
 
+      this.setState({
+        usersFood: newObj,
+        sugarValue: sugarAmount,
+      });
+
+      const isWild = Math.floor(Math.random() * 10);
+      if (isWild === 0) {
         this.setState({
-          usersFood: newObj,
-          sugarValue: sugarAmount,
+          sugarAllowed: this.state.sugarValue - 5,
         });
-
-        const isWild = (Math.floor(Math.random() * 10));
-        if (isWild === 0) {
-          this.setState({
-            sugarAllowed: this.state.sugarValue - 5,
-          })
-        } else {
-          this.setState({
-            sugarAllowed: this.state.sugarValue - 10,
-          })
-        }
-    
-      })
-  }
-
+      } else {
+        this.setState({
+          sugarAllowed: this.state.sugarValue - 10,
+        });
+      }
+    });
+  };
 
   handleChange = (event) => {
     event.preventDefault();
@@ -208,9 +203,9 @@ class ApiCalls extends Component {
         checkUserChoice: true,
       });
 
-      this.unsplashCall(this.state.userInput)
+      this.unsplashCall(this.state.userInput);
 
-      this.nutritionixCall(this.state.userInput, 10000)
+      this.nutritionixCall(this.state.userInput, 10000);
     }
   }
 
@@ -236,18 +231,16 @@ class ApiCalls extends Component {
       checkReco: true,
     });
 
-    const isWild = (Math.floor(Math.random() * 10));
+    const isWild = Math.floor(Math.random() * 10);
     if (isWild === 0) {
       this.setState({
         sugarAllowed: this.state.sugarValue - 5,
-      })
+      });
     } else {
       this.setState({
         sugarAllowed: this.state.sugarValue - 10,
-      })
+      });
     }
-    
-    console.log(this.state.sugarAllowed)
     // an API call to get the nutrition values for the substitute food that meets the condition of less amount of sugar
     axios({
       url: "https://trackapi.nutritionix.com/v2/search/instant",
@@ -274,9 +267,6 @@ class ApiCalls extends Component {
       randItem = Math.floor(Math.random() * noOfRes);
 
       const nutObj = response.data.common[randItem].full_nutrients;
-      console.log(noOfRes)
-      console.log(response.data.common)
-
       let sugarAmount;
       let fatAmount;
       let calorieAmount;
@@ -318,35 +308,32 @@ class ApiCalls extends Component {
         recommendedFood: newObj,
         recoFoodTitle: response.data.common[randItem].food_name,
         sugarDiff: this.state.sugarValue - newObj[2],
-      });            
-    });
+      });
 
-    // an API call that returns the image for the substitute food
-    axios({
-      url: 'https://api.unsplash.com/photos/random',
-      method: "GET",
-      responseType: "JSON",
-      params: {
-        client_id: this.state.unsplashKey,
-        query: this.state.recoFoodTitle,
-        orientation: "squarish"
-      },
-    }).then((response) => {
+      // an API call that returns the image for the substitute food
+      axios({
+        url: "https://api.unsplash.com/photos/random",
+        method: "GET",
+        responseType: "JSON",
+        params: {
+          client_id: this.state.unsplashKey,
+          query: this.state.recoFoodTitle,
+          orientation: "squarish",
+        },
+      }).then((response) => {
+        let unsplashUrl = response.data.urls.small;
+        let altTag = response.data.alt_description;
 
-      let unsplashUrl = response.data.urls.small;
-      let altTag = response.data.alt_description;
-
-      this.setState({
-        recoImage: unsplashUrl,
-        recoImageAlt: altTag,
+        this.setState({
+          recoImage: unsplashUrl,
+          recoImageAlt: altTag,
+        });
       });
     });
   };
   render() {
     return (
       <div className="wrapper">
-
-
         <UserInput
           results={this.state}
           handleChange={this.handleChange}
