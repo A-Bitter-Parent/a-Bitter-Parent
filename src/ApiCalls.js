@@ -12,6 +12,8 @@ class ApiCalls extends Component {
       userInput: "",
       recoFoodTitle: "",
       sugarValue: "",
+      sugarDiff: "",
+      recoSugarValue: "",
       usersFood: [],
       recommendedFood: [],
       checkReco: false,
@@ -25,9 +27,9 @@ class ApiCalls extends Component {
       recoImage: "",
       recoImageAlt: "",
       firebaseObj: {},
-      // unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+      unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
       //to swtich between keys when it reaches limit
-      unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
+      // unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
     };
   }
 
@@ -284,10 +286,12 @@ class ApiCalls extends Component {
         proteinAmount,
         carbohydratesAmount,
       ];
+
       this.setState({
         recommendedFood: newObj,
         recoFoodTitle: response.data.common[randItem].food_name,
-      });      
+        sugarDiff: this.state.sugarValue - newObj[2],
+      });            
     });
 
     // an API call that returns the image for the substitute food
