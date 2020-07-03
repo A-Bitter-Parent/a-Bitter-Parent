@@ -15,7 +15,7 @@ class Snack extends Component {
             <option value="candy corn">Candy Corn</option>
             <option value="ice cream cake">Ice Cream Sandwiches</option>
             <option value="sweetened iced tea">Sweetened Iced Tea</option>
-            <option value="applesauce">Applesauce</option>
+            <option value="apple sauce">Applesauce</option>
             <option value="milkshake">Milkshake</option>
             <option value="salted caramel pie">Salted Caramel Pie</option>
             <option value="chocolate milk">Chocolate Milk</option>

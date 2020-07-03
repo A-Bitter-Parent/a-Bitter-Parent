@@ -25,11 +25,10 @@ class ApiCalls extends Component {
       recoImage: "",
       recoImageAlt: "",
       firebaseObj: {},
-      unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
-      // unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
-      sugarAllowed: 0,
+      // unsplashKey:  'XOIxVf1JifM9_NSItXssxrkEDz917Vsu03WTP2T6nbA',
+      //to swtich between keys when it reaches limit
+      unsplashKey: 'wPc_7irjVjTU9ez7gjehFg6qAyrOd2HEkx_YY397uts',
     };
-
   }
 
   // function that upon call makes an API request to get the food images
@@ -42,7 +41,6 @@ class ApiCalls extends Component {
 				client_id: this.state.unsplashKey,
         query:`${query}`,
         orientation: "squarish"
-        // collections: 386111,
     },
 		}).then((response) => {
 
@@ -122,12 +120,9 @@ class ApiCalls extends Component {
         carbohydratesAmount,
       ];
       
-      
       this.setState({
         usersFood: newObj,
         sugarValue: sugarAmount,
-        // recommendedFood: recoObj,
-        // recoFoodTitle: title,
       });
     })
   }
@@ -201,7 +196,6 @@ class ApiCalls extends Component {
       this.unsplashCall(this.state.userInput)
 
       this.nutritionixCall(this.state.userInput, 10000)
-		
     }
   }
 
@@ -227,17 +221,6 @@ class ApiCalls extends Component {
       checkReco: true,
     });
 
-    const isWild = (Math.floor(Math.random() * 10));
-    if (isWild === 0) {
-      this.setState({
-        sugarAllowed : this.state.sugarValue - 5,
-      })
-    } else {
-      this.setState({
-        sugarAllowed : this.state.sugarValue - 10,
-      })
-    }
-
     // an API call to get the nutrition values for the substitute food that meets the condition of less amount of sugar
     axios({
       url: "https://trackapi.nutritionix.com/v2/search/instant",
@@ -254,7 +237,7 @@ class ApiCalls extends Component {
         detailed: true,
         full_nutrients: {
           "269": {
-            lte: this.state.sugarAllowed,
+            lte: this.state.sugarValue - 10,
           },
         },
       },
@@ -262,7 +245,6 @@ class ApiCalls extends Component {
       let randItem;
       let noOfRes = this.state.recommendedFood.length;
       randItem = Math.floor(Math.random() * noOfRes);
-
 
       const nutObj = response.data.common[randItem].full_nutrients;
 
@@ -285,7 +267,6 @@ class ApiCalls extends Component {
         }
       }
 
-
       if (fatAmount === undefined) {
         fatAmount = 0;
       } else if (calorieAmount === undefined) {
@@ -306,7 +287,7 @@ class ApiCalls extends Component {
       this.setState({
         recommendedFood: newObj,
         recoFoodTitle: response.data.common[randItem].food_name,
-      });
+      });      
     });
 
     // an API call that returns the image for the substitute food
@@ -316,12 +297,11 @@ class ApiCalls extends Component {
       responseType: "JSON",
       params: {
         client_id: this.state.unsplashKey,
-        query: `${this.state.recoFoodTitle}`,
+        query: this.state.recoFoodTitle,
         orientation: "squarish"
-        // collections: 386111,
-
       },
     }).then((response) => {
+      
         let unsplashUrl = response.data.urls.small;
         let altTag = response.data.alt_description;
 
@@ -330,7 +310,6 @@ class ApiCalls extends Component {
           recoImageAlt: altTag,
         });
       });
-
   };
   render() {
     return (
