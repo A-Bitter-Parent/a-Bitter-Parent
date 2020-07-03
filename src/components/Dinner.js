@@ -7,11 +7,11 @@ class Dinner extends Component {
       <Fragment>
         <form>
           <label htmlFor="foodMenu">Select what you would Like</label>
-          <select id="foodMenu" onChange={this.props.handleChange}>
-          <option selected disabled>
+          <select id="foodMenu" onChange={this.props.handleChange} defaultValue>
+          <option disabled value>
               Choose your food
             </option>
-            <option value="bbq ribs">BBQ Ribs</option>
+            <option value="bbq 0ribs">BBQ Ribs</option>
             <option value="walnut shrimp">Walnut Shrimp</option>
             <option value="sesame chicken">Sesame Chicken</option>
             <option value="vermicelli noodles with pork">Vermicelli Noodles with Pork</option>

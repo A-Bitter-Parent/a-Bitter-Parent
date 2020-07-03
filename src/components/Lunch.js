@@ -7,8 +7,8 @@ class Lunch extends Component {
       <Fragment>
         <form className="foodSelector">
           <label htmlFor="foodMenu">Select what you would Like</label>
-          <select id="foodMenu" onChange={this.props.handleChange}>
-          <option selected disabled>
+          <select id="foodMenu" onChange={this.props.handleChange} defaultValue>
+          <option disabled value>
               Choose your food
             </option>
             <option value="teriyaki steak">Teriyaki Steak</option>
